@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const User = require("./models/User");
+const auth = require("./middleware/auth");
 
 const app = express();
 
@@ -13,14 +14,24 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/lawbridge")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
 
-// ✅ SIGNUP ROUTE (IMPORTANT)
+// ✅ SIGNUP ROUTE
 app.post("/api/signup", async (req, res) => {
   const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    return res.status(400).json({ message: "Invalid email format" });
+  }
+  if (password.length < 6) {
+    return res.status(400).json({ message: "Password must be at least 6 characters" });
+  }
 
   try {
     const existingUser = await User.findOne({ email });
@@ -38,12 +49,17 @@ app.post("/api/signup", async (req, res) => {
     res.json({ message: "Signup successful" });
 
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
+// ✅ LOGIN ROUTE
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
 
   try {
     const user = await User.findOne({ email });
@@ -61,13 +77,27 @@ app.post("/api/login", async (req, res) => {
     res.json({
       token,
       user: {
+        id: user._id,
         name: user.name,
         email: user.email
       }
     });
 
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// ✅ GET CURRENT USER (protected)
+app.get("/api/me", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user)
+      return res.status(404).json({ message: "User not found" });
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
   }
 });
 

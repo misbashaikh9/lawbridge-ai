@@ -23,6 +23,12 @@
   gap: 16px;
 }
 
+.navbar-user {
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .navbar-login {
   padding: 8px 22px;
   background: #fff;
@@ -31,6 +37,9 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
   transition: 0.2s ease;
 }
 
