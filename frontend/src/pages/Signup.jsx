@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "./Auth.css";
 
@@ -7,13 +7,34 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignup = async () => {
+    setError("");
+
+    if (!name.trim() || !email.trim() || !password.trim()) {
+      setError("Please fill in all fields");
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError("Please enter a valid email");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+
+    setLoading(true);
     try {
       await API.post("/signup", { name, email, password });
-      alert("Signup successful");
+      navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.message || "Signup failed");
+      setError(err.response?.data?.message || "Signup failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -26,29 +47,36 @@ const Signup = () => {
         <h2>Create Account</h2>
         <p className="subtitle">Join LawBridge AI</p>
 
+        {error && <p className="auth-error">{error}</p>}
+
         <input
           type="text"
           placeholder="Full Name"
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
 
         <input
           type="email"
           placeholder="Email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button onClick={handleSignup}>Sign Up</button>
+        <button onClick={handleSignup} disabled={loading}>
+          {loading ? "Signing up..." : "Sign Up"}
+        </button>
 
         <p className="signup-text">
           Already have an account?{" "}
-          <Link to="/" className="link">
+          <Link to="/login" className="link">
             Login
           </Link>
         </p>
