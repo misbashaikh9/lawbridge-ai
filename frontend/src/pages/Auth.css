@@ -1,0 +1,197 @@
+/* ================= GLOBAL ================= */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ================= CONTAINER ================= */
+.auth-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+
+  background: url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f")
+    no-repeat center center/cover;
+
+  position: relative;
+}
+
+/* Overlay */
+.auth-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* ================= LEFT (CARD) ================= */
+.auth-left-section {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 1;
+}
+
+/* ================= CARD ================= */
+.auth-card {
+  width: 340px;
+  padding: 34px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+
+  text-align: center;
+}
+
+/* ================= TEXT ================= */
+.auth-card h2 {
+  margin-bottom: 6px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+/* ================= INPUT ================= */
+.auth-card input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px auto;
+  display: block;
+
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+
+  font-size: 13px;
+}
+
+/* ================= OPTIONS ================= */
+.options {
+  width: 90%;
+  margin: 10px auto;
+  padding: 0 5px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 12px;
+  color: #374151;
+}
+
+/* FIX LABEL */
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  white-space: nowrap;   /* 🔥 THIS FIXES BREAK */
+}
+
+.options input[type="checkbox"] {
+  margin: 0;
+  transform: scale(0.9);
+}
+
+.forgot {
+  color: #6366f1;
+  cursor: pointer;
+}
+
+/* ================= BUTTON ================= */
+.auth-card button {
+  width: 90%;
+  padding: 10px;
+  margin: 14px auto;
+  display: block;
+
+  background: #0f172a;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.auth-card button:hover {
+  background: #1e293b;
+}
+
+/* ================= LINKS ================= */
+.signup-text {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.link {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ================= RIGHT (QUOTE) ================= */
+.auth-right-section {
+  flex: 1;
+  max-width: 420px;
+  padding-left: 60px;
+
+  color: #e5e7eb;
+  z-index: 1;
+}
+
+.auth-right-section h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #f9fafb;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.auth-right-section p {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.95;
+  color: #d1d5db;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .auth-right-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+  .auth-left-section {
+    justify-content: center;
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 350px;
+  }
+}
