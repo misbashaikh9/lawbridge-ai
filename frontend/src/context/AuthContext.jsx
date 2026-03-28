@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(res.data) 
 
         setUser(res.data);
       } catch (err) {
