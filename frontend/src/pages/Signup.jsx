@@ -11,7 +11,8 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSignup = async () => {
+  const handleSignup = async (event) => {
+    event.preventDefault();
     setError("");
 
     if (!name.trim() || !email.trim() || !password.trim()) {
@@ -49,37 +50,39 @@ const Signup = () => {
 
         {error && <p className="auth-error">{error}</p>}
 
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <form onSubmit={handleSignup}>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button onClick={handleSignup} disabled={loading}>
-          {loading ? "Signing up..." : "Sign Up"}
-        </button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Signing up..." : "Sign Up"}
+          </button>
 
-        <p className="signup-text">
-          Already have an account?{" "}
-          <Link to="/login" className="link">
-            Login
-          </Link>
-        </p>
+          <p className="signup-text">
+            Already have an account?{" "}
+            <Link to="/login" className="link">
+              Login
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
 

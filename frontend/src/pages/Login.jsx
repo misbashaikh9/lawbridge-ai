@@ -12,7 +12,8 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
     setError("");
 
     if (!email.trim() || !password.trim()) {
@@ -28,7 +29,7 @@ const Login = () => {
     try {
       const res = await API.post("/auth/login", { email, password });
       login(res.data.token, res.data.user);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     } finally {
@@ -47,37 +48,39 @@ const Login = () => {
 
         {error && <p className="auth-error">{error}</p>}
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <div className="options">
-          <label>
-            <input type="checkbox" /> Remember me
-          </label>
-          <span className="forgot">Forgot?</span>
-        </div>
+          <div className="options">
+            <label>
+              <input type="checkbox" /> Remember me
+            </label>
+            <span className="forgot">Forgot?</span>
+          </div>
 
-        <button onClick={handleLogin} disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
 
-        <p className="signup-text">
-          Don't have an account?{" "}
-          <Link to="/signup" className="link">
-            Sign up
-          </Link>
-        </p>
+          <p className="signup-text">
+            Don't have an account?{" "}
+            <Link to="/signup" className="link">
+              Sign up
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
 
