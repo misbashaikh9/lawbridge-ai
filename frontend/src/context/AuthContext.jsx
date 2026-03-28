@@ -9,32 +9,44 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Auto-login: check token on app load
+  // 🔥 Auto-login on refresh
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem("token");
+
       if (!token) {
         setLoading(false);
         return;
       }
+
       try {
-        const res = await API.get("/me");
+        const res = await API.get("/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(res.data) 
+
         setUser(res.data);
-      } catch {
+      } catch (err) {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
       }
+
       setLoading(false);
     };
+
     loadUser();
   }, []);
 
+  // 🔐 Login
   const login = (token, userData) => {
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   };
 
+  // 🚪 Logout
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
