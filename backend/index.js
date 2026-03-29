@@ -5,7 +5,11 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
 
+const aiRoutes = require("./routes/ai");
+
 const app = express();
+
+app.use("/api/ai", aiRoutes);
 
 app.use(cors({origin:"*"}));
 app.use(express.json());
