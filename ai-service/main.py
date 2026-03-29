@@ -13,5 +13,12 @@ def home():
 @app.post("/analyze")
 def analyze(data: Query):
     return {
-        "response": f"Processed: {data.question}"
-    }
+    "category": "Cyber Law",
+    "severity": "minor",
+    "explanation": f"This falls under Cyber Law for: {data.question}",
+    "steps": [
+        "Collect all evidence",
+        "Report to cyber crime portal",
+        "Contact legal expert"
+    ]
+}
