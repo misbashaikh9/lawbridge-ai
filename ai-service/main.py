@@ -1,24 +1,31 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+import joblib
 
-app = FastAPI()
+data = pd.read_csv("data.csv")
 
-class Query(BaseModel):
-    question: str
+texts = data["text"]
 
-@app.get("/")
-def home():
-    return {"message": "AI Service Running 🚀"}
+# Convert text to numbers
+vectorizer = TfidfVectorizer(
+    lowercase=True,
+    stop_words="english",
+    ngram_range=(1,2)
+)
+X = vectorizer.fit_transform(texts)
 
-@app.post("/analyze")
-def analyze(data: Query):
-   return {
-    "category": "Cyber Law",
-    "severity": "minor",
-    "explanation": f"This falls under Cyber Law for: {data.question}",
-    "steps": [
-        "Collect all evidence",
-        "Report to cyber crime portal",
-        "Contact legal expert"
-    ]
-}
+# Train category model
+category_model = MultinomialNB()
+category_model.fit(X, data["category"])
+
+# Train severity model
+severity_model = MultinomialNB()
+severity_model.fit(X, data["severity"])
+
+# Save models
+joblib.dump(vectorizer, open("vectorizer.pkl","wb"))
+joblib.dump(category_model, open("category_model.pkl","wb"))
+joblib.dump(severity_model, open("severity_model.pkl","wb"))
+
+print("Models trained and saved!")

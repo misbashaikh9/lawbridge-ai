@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://lawbridge-ai-1.onrender.com",
+  baseURL: "https://lawbridge-ai-1.onrender.com/api",
 });
 
 API.interceptors.request.use((config) => {
@@ -11,5 +11,4 @@ API.interceptors.request.use((config) => {
   }
   return config;
 });
-
 export default API;

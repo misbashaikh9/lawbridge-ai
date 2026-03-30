@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-router.post("/ask", async (req, res) => {
+router.post("/query", async (req, res) => {
   try {
     const { question } = req.body;
 
     const aiResponse = await axios.post("https://lawbridge-ai-ai-service.onrender.com/analyze", {
-      question,
+      question : query,
     });
 
     res.json(aiResponse.data);

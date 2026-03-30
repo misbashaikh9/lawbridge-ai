@@ -1,0 +1,33 @@
+text,category,severity
+my employer has not paid my salary for the last two months,Labour Law,Serious
+company terminated me without giving any notice,Labour Law,Serious
+my boss forces me to work overtime every day without extra pay,Labour Law,Moderate
+the company is delaying my salary repeatedly,Labour Law,Moderate
+my employer reduced my salary without informing me,Labour Law,Moderate
+my company is not giving my final settlement after resignation,Labour Law,Serious
+my landlord refuses to return my security deposit after I moved out,Tenant Law,Moderate
+the landlord increased rent suddenly without notice,Tenant Law,Minor
+my landlord is threatening to evict me illegally,Tenant Law,Serious
+the owner is not repairing essential facilities in the rented house,Tenant Law,Minor
+the landlord locked the house even though I paid rent,Tenant Law,Serious
+the landlord is asking for extra money not mentioned in the agreement,Tenant Law,Moderate
+I ordered a product online but received a damaged item,Consumer Law,Moderate
+the seller refused to give me a refund for a defective product,Consumer Law,Moderate
+an online store delivered a completely different product than advertised,Consumer Law,Moderate
+I paid for a product but it was never delivered,Consumer Law,Serious
+the company is not honoring the warranty for my product,Consumer Law,Minor
+the service provider charged hidden fees not mentioned earlier,Consumer Law,Moderate
+my social media account was hacked and someone is misusing it,Cyber Law,Serious
+someone used my credit card details for an online transaction without permission,Cyber Law,Serious
+I lost money in an online scam through a fake website,Cyber Law,Serious
+someone created a fake profile using my photos online,Cyber Law,Moderate
+I received threatening messages through email from an unknown person,Cyber Law,Moderate
+my personal data was leaked from a website database,Cyber Law,Serious
+my employer is forcing employees to sign unfair contracts,Labour Law,Moderate
+the company is refusing to provide legally required leave benefits,Labour Law,Moderate
+my landlord is not providing basic utilities like water and electricity,Tenant Law,Serious
+the landlord is forcing me to vacate the house before the lease ends,Tenant Law,Serious
+a company sold me a fake branded product online,Consumer Law,Serious
+the seller blocked my account after I complained about a faulty product,Consumer Law,Moderate
+someone hacked my email and is sending spam messages,Cyber Law,Moderate
+a fraudster contacted me pretending to be a bank officer,Cyber Law,Serious
