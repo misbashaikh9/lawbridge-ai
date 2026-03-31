@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const res = await API.get("/auth/me", {
+        const res = await API.get("/api/auth/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
