@@ -37,64 +37,64 @@ const Login = () => {
     }
   };
 
- return (
-  <div className="auth-container">
+  return (
+    <div className="auth-container">
 
-    {/* LEFT - LOGIN CARD */}
-    <div className="auth-left-section">
-      <div className="auth-card">
-        <h2>LawBridge AI</h2>
-        <p className="subtitle">Secure legal access platform</p>
+      {/* LEFT - LOGIN CARD */}
+      <div className="auth-left-section">
+        <div className="auth-card">
+          <h2>LawBridge AI</h2>
+          <p className="subtitle">Secure legal access platform</p>
 
-        {error && <p className="auth-error">{error}</p>}
+          {error && <p className="auth-error">{error}</p>}
 
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-          <div className="options">
-            <label>
-              <input type="checkbox" /> Remember me
-            </label>
-            <span className="forgot">Forgot?</span>
-          </div>
+            <div className="options">
+              <label>
+                <input type="checkbox" /> Remember me
+              </label>
+              <span className="forgot">Forgot?</span>
+            </div>
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
-          </button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
 
-          <p className="signup-text">
-            Don't have an account?{" "}
-            <Link to="/signup" className="link">
-              Sign up
-            </Link>
-          </p>
-        </form>
+            <p className="signup-text">
+              Don't have an account?{" "}
+              <Link to="/signup" className="link">
+                Sign up
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
-    </div>
 
-    {/* RIGHT - QUOTE / TRUST TEXT */}
-    <div className="auth-right-section">
-      <h1>Justice begins with clarity.</h1>
-      <p>
-        LawBridge AI helps you navigate legal systems with confidence,
-        security, and intelligence.
-      </p>
-    </div>
+      {/* RIGHT - QUOTE / TRUST TEXT */}
+      <div className="auth-right-section">
+        <h1>Justice begins with clarity.</h1>
+        <p>
+          LawBridge AI helps you navigate legal systems with confidence,
+          security, and intelligence.
+        </p>
+      </div>
 
-  </div>
-);
+    </div>
+  );
 };
 
 export default Login;

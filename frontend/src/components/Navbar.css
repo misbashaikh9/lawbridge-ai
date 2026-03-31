@@ -1,63 +1,312 @@
+/* ============================
+   NAVBAR — Premium Legal Theme
+   ============================ */
+
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 48px;
+  transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+  background: transparent;
+}
+
+.navbar--scrolled {
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+  padding: 0 48px;
+}
+
+.navbar__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 40px;
-  background: #0f172a;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  max-width: 1320px;
+  margin: 0 auto;
+  height: 80px;
 }
 
-.navbar-brand {
-  font-size: 20px;
-  font-weight: 700;
-  color: #f9fafb;
+/* ---- Logo ---- */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
-  letter-spacing: -0.5px;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  z-index: 1001;
 }
 
-.navbar-links {
+.navbar__logo-icon {
+  width: 28px;
+  height: 28px;
+  color: #c9a84c;
+}
+
+/* ---- Nav Links ---- */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar__link {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.25s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 20px;
+  height: 2px;
+  background: #c9a84c;
+  border-radius: 1px;
+  transition: transform 0.3s ease;
+}
+
+.navbar__link:hover {
+  color: #fff;
+}
+
+.navbar__link:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ---- Right side ---- */
+.navbar__right {
   display: flex;
   align-items: center;
   gap: 16px;
+  z-index: 1001;
 }
 
-.navbar-user {
-  color: #cbd5e1;
+.navbar__user-name {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
 }
 
-.navbar-login {
-  padding: 8px 22px;
-  background: #fff;
-  color: #0f172a;
-  border-radius: 6px;
-  text-decoration: none;
+.navbar__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: #1a1a1a;
+  color: #fff;
+  border: 1.5px solid rgba(201, 168, 76, 0.5);
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navbar__cta:hover {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+}
+
+.navbar--scrolled .navbar__cta {
+  background: transparent;
+}
+
+/* ---- Mobile Auth (hidden on desktop) ---- */
+.navbar__mobile-auth {
+  display: none;
+}
+
+/* ---- Hamburger ---- */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
   border: none;
   cursor: pointer;
-  transition: 0.2s ease;
+  padding: 8px;
+  z-index: 1001;
 }
 
-.navbar-login:hover {
-  background: #e2e8f0;
+.navbar__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
 }
 
-@media (max-width: 768px) {
+.navbar__hamburger--active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar__hamburger--active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar__hamburger--active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ---- Overlay ---- */
+.navbar__overlay {
+  display: none;
+}
+
+/* ================================
+   RESPONSIVE — Tablet & Mobile
+   ================================ */
+
+@media (max-width: 1024px) {
   .navbar {
-    padding: 14px 20px;
+    padding: 0 24px;
   }
 
-  .navbar-brand {
+  .navbar--scrolled {
+    padding: 0 24px;
+  }
+
+  .navbar__container {
+    height: 68px;
+  }
+
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: #141414;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 100px 32px 40px;
+    gap: 0;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+  }
+
+  .navbar__links--open {
+    right: 0;
+  }
+
+  .navbar__link {
+    width: 100%;
+    text-align: left;
+    padding: 16px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .navbar__link::after {
+    display: none;
+  }
+
+  .navbar__link:hover {
+    color: #c9a84c;
+  }
+
+  /* Show mobile auth in sidebar */
+  .navbar__mobile-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .navbar__user-greeting {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+
+  .navbar__mobile-auth .navbar__cta {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Hide desktop right side */
+  .navbar__right {
+    display: none;
+  }
+
+  /* Show hamburger */
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  /* Overlay */
+  .navbar__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    backdrop-filter: blur(2px);
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .navbar--scrolled {
+    padding: 0 16px;
+  }
+
+  .navbar__logo {
     font-size: 18px;
+    letter-spacing: 1.5px;
   }
 
-  .navbar-login {
-    padding: 6px 16px;
-    font-size: 13px;
+  .navbar__logo-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .navbar__links {
+    width: 100%;
+    right: -100%;
+  }
+
+  .navbar__links--open {
+    right: 0;
   }
 }
