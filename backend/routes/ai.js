@@ -7,7 +7,7 @@ router.post("/query", async (req, res) => {
     const { question } = req.body;
 
     const aiResponse = await axios.post("https://lawbridge-ai-ai-service.onrender.com/analyze", {
-      question : query,
+      question : question,
     });
 
     res.json(aiResponse.data);

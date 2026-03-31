@@ -4,21 +4,20 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
-
 const aiRoutes = require("./routes/ai");
 
 const app = express();
 
-app.use("/api/ai", aiRoutes);
-
-app.use(cors({origin:"*"}));
+// Middleware
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-// DB connect
+// DB connect (before routes = cleaner)
 connectDB();
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/ai", aiRoutes);
 
 // Test route
 app.get("/", (req, res) => {
