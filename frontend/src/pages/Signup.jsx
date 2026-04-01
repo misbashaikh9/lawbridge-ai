@@ -40,63 +40,69 @@ const Signup = () => {
   };
 
   return (
-  <div className="auth-container">
-
-    {/* LEFT - SIGNUP CARD */}
-    <div className="auth-left-section">
-      <div className="auth-card">
-        <h2>Create Account</h2>
-        <p className="subtitle">Join LawBridge AI</p>
-
-        {error && <p className="auth-error">{error}</p>}
-
-        <form onSubmit={handleSignup}>
-          <input
-            type="text"
-            placeholder="Full Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <button type="submit" disabled={loading}>
-            {loading ? "Signing up..." : "Sign Up"}
-          </button>
-
-          <p className="signup-text">
-            Already have an account?{" "}
-            <Link to="/login" className="link">
-              Login
-            </Link>
+    <div className="auth-container">
+      <div className="auth-left-section">
+        <div className="auth-card">
+          <span className="auth-brand">LawBridge AI</span>
+          <h2>Create your account</h2>
+          <p className="subtitle">
+            Join a secure legal platform designed with a more formal presentation and minimal visual distraction.
           </p>
-        </form>
+
+          {error && <p className="auth-error">{error}</p>}
+
+          <form className="auth-form" onSubmit={handleSignup}>
+            <input
+              type="text"
+              placeholder="Full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+
+            <input
+              type="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <button type="submit" disabled={loading}>
+              {loading ? "Signing up..." : "Sign Up"}
+            </button>
+
+            <p className="signup-text">
+              Already have an account?{" "}
+              <Link to="/login" className="link">
+                Login
+              </Link>
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <div className="auth-right-section">
+        <span className="auth-eyebrow">Professional Legal Support</span>
+        <h1>
+          Justice begins with <span>clarity.</span>
+        </h1>
+        <p>
+          LawBridge AI presents legal information in a calm, structured environment designed to support trust, confidentiality, and sound decision-making.
+        </p>
+        <div className="auth-highlights">
+          <span className="auth-highlight">Confidential access to your legal assistant</span>
+          <span className="auth-highlight">Clear, reliable guidance for everyday legal questions</span>
+          <span className="auth-highlight">A presentation style suited to professional legal services</span>
+        </div>
       </div>
     </div>
-
-    {/* RIGHT - SAME QUOTE */}
-    <div className="auth-right-section">
-      <h1>Justice begins with clarity.</h1>
-      <p>
-        LawBridge AI helps you navigate legal systems with confidence,
-        security, and intelligence.
-      </p>
-    </div>
-
-  </div>
-);
+  );
 };
 
 export default Signup;

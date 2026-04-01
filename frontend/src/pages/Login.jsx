@@ -39,19 +39,20 @@ const Login = () => {
 
   return (
     <div className="auth-container">
-
-      {/* LEFT - LOGIN CARD */}
       <div className="auth-left-section">
         <div className="auth-card">
-          <h2>LawBridge AI</h2>
-          <p className="subtitle">Secure legal access platform</p>
+          <span className="auth-brand">LawBridge AI</span>
+          <h2>Welcome back</h2>
+          <p className="subtitle">
+            Access your secure legal workspace with a clear, professional experience built for focused legal guidance.
+          </p>
 
           {error && <p className="auth-error">{error}</p>}
 
-          <form onSubmit={handleLogin}>
+          <form className="auth-form" onSubmit={handleLogin}>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -84,15 +85,20 @@ const Login = () => {
         </div>
       </div>
 
-      {/* RIGHT - QUOTE / TRUST TEXT */}
       <div className="auth-right-section">
-        <h1>Justice begins with clarity.</h1>
+        <span className="auth-eyebrow">Professional Legal Support</span>
+        <h1>
+          Justice begins with <span>clarity.</span>
+        </h1>
         <p>
-          LawBridge AI helps you navigate legal systems with confidence,
-          security, and intelligence.
+          LawBridge AI presents legal information in a calm, structured environment designed to support trust, confidentiality, and sound decision-making.
         </p>
+        <div className="auth-highlights">
+          <span className="auth-highlight">Confidential access to your legal assistant</span>
+          <span className="auth-highlight">Clear, reliable guidance for everyday legal questions</span>
+          <span className="auth-highlight">A presentation style suited to professional legal services</span>
+        </div>
       </div>
-
     </div>
   );
 };
