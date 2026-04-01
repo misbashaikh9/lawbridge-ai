@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Navbar.css";
@@ -8,7 +8,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const userMenuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,11 +24,31 @@ const Navbar = () => {
   // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
+    setUserMenuOpen(false);
+    setProfileOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    const handlePointerDown = (event) => {
+      if (!userMenuRef.current?.contains(event.target)) {
+        setUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    return () => document.removeEventListener("mousedown", handlePointerDown);
+  }, []);
 
   const handleLogout = () => {
     logout();
+    setUserMenuOpen(false);
+    setProfileOpen(false);
     navigate("/login");
+  };
+
+  const handleProfileOpen = () => {
+    setUserMenuOpen(false);
+    setProfileOpen(true);
   };
 
   const scrollToSection = (id) => {
@@ -80,17 +103,38 @@ const Navbar = () => {
         {/* Right side */}
         <div className="navbar__right">
           {user ? (
-            <>
+            <div className="navbar__user-menu" ref={userMenuRef}>
               <span className="navbar__user-name">{user.name}</span>
-              <button onClick={handleLogout} className="navbar__cta">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
-                  <polyline points="16 17 21 12 16 7" />
-                  <line x1="21" y1="12" x2="9" y2="12" />
-                </svg>
-                Logout
+              <button
+                type="button"
+                className={`navbar__menu-trigger ${userMenuOpen ? "navbar__menu-trigger--active" : ""}`}
+                onClick={() => setUserMenuOpen((current) => !current)}
+                aria-label="Open account menu"
+                aria-expanded={userMenuOpen}
+                aria-haspopup="menu"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
               </button>
-            </>
+
+              {userMenuOpen && (
+                <div className="navbar__dropdown" role="menu" aria-label="Account menu">
+                  <button type="button" className="navbar__dropdown-item" onClick={handleProfileOpen}>
+                    <span className="navbar__dropdown-title">Profile</span>
+                    <span className="navbar__dropdown-copy">View account details</span>
+                  </button>
+                  <button type="button" className="navbar__dropdown-item" onClick={() => navigate("/chat")}>
+                    <span className="navbar__dropdown-title">AI Workspace</span>
+                    <span className="navbar__dropdown-copy">Open your legal assistant</span>
+                  </button>
+                  <button type="button" className="navbar__dropdown-item navbar__dropdown-item--danger" onClick={handleLogout}>
+                    <span className="navbar__dropdown-title">Sign out</span>
+                    <span className="navbar__dropdown-copy">End this session securely</span>
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <Link to="/login" className="navbar__cta">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -115,6 +159,27 @@ const Navbar = () => {
 
       {/* Mobile overlay */}
       {menuOpen && <div className="navbar__overlay" onClick={() => setMenuOpen(false)} />}
+
+      {profileOpen && (
+        <div className="navbar__profile-backdrop" onClick={() => setProfileOpen(false)}>
+          <div className="navbar__profile-panel" onClick={(event) => event.stopPropagation()}>
+            <span className="navbar__profile-eyebrow">Profile</span>
+            <h3 className="navbar__profile-name">{user?.name || "LawBridge user"}</h3>
+            <p className="navbar__profile-email">{user?.email || "Signed in account"}</p>
+            <p className="navbar__profile-copy">
+              Your account is active and ready for secure legal analysis inside LawBridge AI.
+            </p>
+            <div className="navbar__profile-actions">
+              <button type="button" className="navbar__cta" onClick={() => navigate("/chat")}>
+                Open AI Workspace
+              </button>
+              <button type="button" className="navbar__profile-close" onClick={() => setProfileOpen(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
