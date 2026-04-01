@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import "./Home.css";
 
@@ -70,6 +72,26 @@ const steps = [
 ];
 
 const Home = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
+  const scrollToSection = (id) => {
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleAiAccess = () => {
+    if (user) {
+      navigate("/chat");
+      return;
+    }
+
+    setShowLoginPrompt(true);
+  };
+
   return (
     <div className="home">
       <Navbar />
@@ -86,13 +108,27 @@ const Home = () => {
           and connect with the right legal help in one intelligent platform.
         </p>
         <div className="hero__buttons">
-          <Link to="/signup" className="btn-primary">Get Started Free</Link>
-          <Link to="/login" className="btn-secondary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" />
-            </svg>
-            See How It Works
-          </Link>
+          {user ? (
+            <>
+              <button type="button" className="btn-primary" onClick={handleAiAccess}>Open AI Workspace</button>
+              <button type="button" className="btn-secondary" onClick={() => scrollToSection("services")}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 6h16" /><path d="M4 12h16" /><path d="M4 18h10" />
+                </svg>
+                Explore Services
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/signup" className="btn-primary">Get Started Free</Link>
+              <Link to="/login" className="btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" />
+                </svg>
+                See How It Works
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Stats strip */}
@@ -162,11 +198,24 @@ const Home = () => {
           <h2 className="section-title features__title">Everything You Need,<br />All in One Place</h2>
           <div className="features-grid" id="features">
             {features.map((f) => (
-              <div className="feature-card" key={f.title}>
-                <FeatureIcon type={f.icon} />
-                <h3>{f.title}</h3>
-                <p>{f.desc}</p>
-              </div>
+              f.icon === "chat" ? (
+                <button
+                  type="button"
+                  className="feature-card feature-card--action"
+                  key={f.title}
+                  onClick={handleAiAccess}
+                >
+                  <FeatureIcon type={f.icon} />
+                  <h3>{f.title}</h3>
+                  <p>{f.desc}</p>
+                </button>
+              ) : (
+                <div className="feature-card" key={f.title}>
+                  <FeatureIcon type={f.icon} />
+                  <h3>{f.title}</h3>
+                  <p>{f.desc}</p>
+                </div>
+              )
             ))}
           </div>
         </div>
@@ -240,6 +289,50 @@ const Home = () => {
           <p className="footer__copy">© 2026 LawBridge AI. All rights reserved.</p>
         </div>
       </footer>
+
+      <button
+        type="button"
+        className="home-ai-link"
+        aria-label={user ? "Open AI chat workspace" : "AI assistant login required"}
+        onClick={handleAiAccess}
+      >
+        <span className="home-ai-link__label">Ask AI</span>
+        <span className="home-ai-link__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 3l1.4 2.84L16.5 7l-3.1 1.16L12 11l-1.4-2.84L7.5 7l3.1-1.16L12 3z" />
+            <path d="M6 14.5A3.5 3.5 0 0 1 9.5 11h5A3.5 3.5 0 0 1 18 14.5v1A2.5 2.5 0 0 1 15.5 18H8.5A2.5 2.5 0 0 1 6 15.5v-1z" />
+            <path d="M9 18v1.25A1.75 1.75 0 0 0 10.75 21h2.5A1.75 1.75 0 0 0 15 19.25V18" />
+            <circle cx="10" cy="14.5" r="0.6" fill="currentColor" stroke="none" />
+            <circle cx="14" cy="14.5" r="0.6" fill="currentColor" stroke="none" />
+          </svg>
+        </span>
+      </button>
+
+      {showLoginPrompt && (
+        <div className="home-modal-backdrop" onClick={() => setShowLoginPrompt(false)}>
+          <div
+            className="home-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="home-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <span className="home-modal__eyebrow">LawBridge AI</span>
+            <h3 id="home-modal-title" className="home-modal__title">Login required</h3>
+            <p className="home-modal__body">
+              Please log in to open the AI workspace and start your legal analysis.
+            </p>
+            <div className="home-modal__actions">
+              <Link to="/login" className="btn-primary" onClick={() => setShowLoginPrompt(false)}>
+                Login
+              </Link>
+              <button type="button" className="btn-secondary" onClick={() => setShowLoginPrompt(false)}>
+                Stay on home
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

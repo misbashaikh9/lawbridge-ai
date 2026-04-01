@@ -123,11 +123,11 @@ export default function Chat() {
       <div className="chat-layout">
         <aside className="chat-sidebar" aria-label="Chat navigation">
           <div className="chat-sidebar__top">
-            <Link to="/dashboard" className="chat-sidebar__back" aria-label="Back to dashboard">
+            <Link to="/" className="chat-sidebar__back" aria-label="Back to home">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M15 18l-6-6 6-6" />
               </svg>
-              <span>Back to dashboard</span>
+              <span>Back to home</span>
             </Link>
 
             <div className="chat-sidebar__brand">
