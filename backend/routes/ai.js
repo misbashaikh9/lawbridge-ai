@@ -3,6 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 
 const AI_SERVICE_URL = "https://lawbridge-ai-ai-service.onrender.com/predict";
+const AI_SERVICE_HEALTH_URL = "https://lawbridge-ai-ai-service.onrender.com/";
 const RETRYABLE_STATUS_CODES = new Set([408, 425, 429, 500, 502, 503, 504]);
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -35,6 +36,46 @@ async function requestAiAnalysis(question) {
 
   throw lastError;
 }
+
+async function warmupAiService() {
+  let lastError;
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      await axios.get(AI_SERVICE_HEALTH_URL, { timeout: 12000 });
+      return;
+    } catch (error) {
+      lastError = error;
+
+      const status = error.response?.status;
+      const isRetryable = !status || RETRYABLE_STATUS_CODES.has(status) || error.code === "ECONNABORTED";
+
+      if (!isRetryable || attempt === 1) {
+        throw error;
+      }
+
+      await delay(1000);
+    }
+  }
+
+  throw lastError;
+}
+
+router.get("/warmup", async (req, res) => {
+  try {
+    await warmupAiService();
+    return res.json({ status: "ready" });
+  } catch (error) {
+    const status = error.response?.status;
+
+    console.error("AI WARMUP ERROR:", status || error.code || error.message);
+
+    return res.status(503).json({
+      error: "AI service is temporarily unavailable",
+      code: "AI_TEMPORARILY_UNAVAILABLE",
+    });
+  }
+});
 
 router.post("/query", async (req, res) => {
   try {

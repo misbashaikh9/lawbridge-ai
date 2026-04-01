@@ -40,6 +40,7 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const warmupPromiseRef = useRef(null);
   const bottomRef = useRef(null);
 
   const resetConversation = () => {
@@ -52,6 +53,16 @@ export default function Chat() {
     const question = (presetQuestion ?? input).trim();
 
     if (!question || loading) return;
+
+    if (warmupPromiseRef.current) {
+      try {
+        await warmupPromiseRef.current;
+      } catch (error) {
+        console.error("AI warmup failed:", error);
+      } finally {
+        warmupPromiseRef.current = null;
+      }
+    }
 
     const userMsg = { type: "user", text: question };
     setMessages((prev) => [...prev, userMsg]);
@@ -94,6 +105,18 @@ export default function Chat() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
+
+  useEffect(() => {
+    warmupPromiseRef.current = API.get("/api/ai/warmup");
+
+    warmupPromiseRef.current.catch((error) => {
+      console.error("AI warmup failed:", error);
+    });
+
+    return () => {
+      warmupPromiseRef.current = null;
+    };
+  }, []);
 
   return (
     <div className="chat-page">
