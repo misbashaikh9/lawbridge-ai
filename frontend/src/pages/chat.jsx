@@ -4,9 +4,9 @@ import API from "../services/api";
 import "./Chat.css";
 
 const starterPrompts = [
-  "My employer fired me after I asked for unpaid salary.",
-  "A landlord is refusing to return my security deposit.",
-  "Someone hacked my bank account and transferred money.",
+  "My employer is not depositing my provident fund and salary is delayed.",
+  "The builder has delayed possession of my flat and is ignoring RERA commitments.",
+  "Someone used my Aadhaar and bank details for online fraud.",
 ];
 
 const buildAssistantMessage = (category, severity) => {
@@ -15,10 +15,10 @@ const buildAssistantMessage = (category, severity) => {
   }
 
   if (!severity) {
-    return `This issue appears to fall under ${category}.`;
+    return `This issue appears to fall under ${category} under Indian law.`;
   }
 
-  return `This issue appears to fall under ${category} and the current severity looks ${severity.toLowerCase()}.`;
+  return `This issue appears to fall under ${category} under Indian law, and the current severity looks ${severity.toLowerCase()}.`;
 };
 
 const buildErrorMessage = (error) => {

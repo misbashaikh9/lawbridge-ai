@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.pipeline import FeatureUnion
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import joblib
@@ -7,12 +8,29 @@ data = pd.read_csv("data.csv")
 
 texts = data["text"]
 
-# Convert text to numbers
-vectorizer = TfidfVectorizer(
-    lowercase=True,
-    stop_words="english",
-    ngram_range=(1,2)
-)
+# Combine word features with character features so the model is less fragile
+# when users type short, misspelled, or informal queries.
+vectorizer = FeatureUnion([
+    (
+        "word",
+        TfidfVectorizer(
+            lowercase=True,
+            stop_words="english",
+            ngram_range=(1, 2),
+            sublinear_tf=True,
+        ),
+    ),
+    (
+        "char",
+        TfidfVectorizer(
+            lowercase=True,
+            analyzer="char_wb",
+            ngram_range=(3, 5),
+            sublinear_tf=True,
+        ),
+    ),
+])
+
 X = vectorizer.fit_transform(texts)
 
 # Train category model

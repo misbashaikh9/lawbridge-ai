@@ -48,12 +48,12 @@ const FeatureIcon = ({ type }) => {
 };
 
 const features = [
-  { icon: "chat", title: "AI Legal Chat", desc: "Ask legal questions and get instant AI-powered explanations in plain language." },
-  { icon: "classify", title: "Legal Classification", desc: "Automatically categorize your issue — Labour, Consumer, Property, Cyber, or Criminal Law." },
+  { icon: "chat", title: "AI Legal Chat", desc: "Ask Indian legal questions and get AI-powered explanations in plain language." },
+  { icon: "classify", title: "Legal Classification", desc: "Automatically categorize your issue across labour, consumer, property, cyber, family, constitutional, and criminal law." },
   { icon: "severity", title: "Case Severity Detection", desc: "Know if your issue is minor or serious and receive the right next steps instantly." },
-  { icon: "lawyer", title: "Lawyer Recommendations", desc: "Get matched with vetted lawyers based on your case category and location." },
+  { icon: "lawyer", title: "Lawyer Recommendations", desc: "Get matched with lawyers based on your case category and city." },
   { icon: "template", title: "Template Generator", desc: "Generate complaint letters, legal notices, and request emails in seconds." },
-  { icon: "verify", title: "Fake Content Detection", desc: "Verify whether legal articles and information are reliable or misleading." },
+  { icon: "verify", title: "Legal Information Check", desc: "Review whether legal information and claims appear reliable or misleading." },
 ];
 
 const stats = [
@@ -82,8 +82,8 @@ const Home = () => {
           Legal Assistant
         </h1>
         <p className="hero__sub">
-          Understand your rights, get instant legal guidance, and connect with
-          the right lawyers — all in one intelligent platform.
+          Understand your rights under Indian law, get instant legal guidance,
+          and connect with the right legal help in one intelligent platform.
         </p>
         <div className="hero__buttons">
           <Link to="/signup" className="btn-primary">Get Started Free</Link>
@@ -119,12 +119,12 @@ const Home = () => {
             <p className="section-body">
               LawBridge AI was built with a mission: to make legal guidance affordable,
               accessible, and understandable for everyone. We combine cutting-edge
-              artificial intelligence with the expertise of seasoned legal professionals
-              to deliver answers you can trust.
+              artificial intelligence with a focus on common Indian legal issues
+              to deliver answers you can understand quickly.
             </p>
             <p className="section-body">
-              Whether you're dealing with a workplace dispute, consumer fraud, property matter,
-              or any other legal challenge, LawBridge AI is by your side — every step of the way.
+              Whether you're dealing with a workplace dispute, consumer fraud, family issue,
+              property matter, cyber complaint, or constitutional rights question, LawBridge AI is by your side.
             </p>
             <Link to="/signup" className="btn-outline">Learn More →</Link>
           </div>
@@ -133,7 +133,7 @@ const Home = () => {
               <span className="about__card-icon">⚖️</span>
               <div>
                 <p className="about__card-title">Certified Legal AI</p>
-                <p className="about__card-sub">Trained on verified legal databases</p>
+                <p className="about__card-sub">Focused on common Indian legal issue patterns</p>
               </div>
             </div>
             <div className="about__card about__card--mid">
@@ -147,7 +147,7 @@ const Home = () => {
               <span className="about__card-icon">🌐</span>
               <div>
                 <p className="about__card-title">Multi-Jurisdiction</p>
-                <p className="about__card-sub">Covering laws across multiple regions</p>
+                <p className="about__card-sub">Built primarily for Indian legal contexts</p>
               </div>
             </div>
             <div className="about__glow" />
@@ -198,8 +198,8 @@ const Home = () => {
           <span className="section-label quote__label">Get In Touch</span>
           <h2 className="section-title quote__title">Ready to Take Control<br />of Your Legal Situation?</h2>
           <p className="section-body quote__body">
-            Start your journey today — no credit card required. Describe your issue and
-            let LawBridge AI guide you toward the right resolution.
+            Start your journey today. Describe your issue and let LawBridge AI guide you
+            toward the right next step under Indian law.
           </p>
           <form className="quote__form" onSubmit={(e) => e.preventDefault()}>
             <div className="quote__row">

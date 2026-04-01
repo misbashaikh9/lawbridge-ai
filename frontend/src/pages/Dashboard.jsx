@@ -25,16 +25,16 @@ const Dashboard = () => {
         <div className="hero-content">
           <p className="hero-subtitle">SERVING RIGHT - SINCE 2020</p>
           <h1 className="hero-title">
-            In The Halls Of Justice <span className="highlight-gold">The Only Justice</span> Is In The Halls.
+            Practical Legal Support For <span className="highlight-gold">Everyday Indian Issues</span>.
           </h1>
           <div className="hero-buttons">
             <button className="btn-primary">Get A Free Quote</button>
             <button className="btn-secondary">Legal Services</button>
           </div>
           <div className="hero-info-row">
-            <span><i className="icon-map"></i> 25th Legal Street, London, U.K.</span>
-            <span><i className="icon-phone"></i> +1 800 289 - 5289</span>
-            <span><i className="icon-envelope"></i> office@lawcy.com</span>
+            <span><i className="icon-map"></i> India-focused legal assistance platform</span>
+            <span><i className="icon-phone"></i> +91 80000 00000</span>
+            <span><i className="icon-envelope"></i> support@lawbridge.ai</span>
           </div>
         </div>
         <div className="hero-image-container">
@@ -51,21 +51,21 @@ const Dashboard = () => {
              <div className="icon-inner">⚙️</div>
           </div>
           <h3>Professional Services</h3>
-          <p>Quisque varius, nisi finibus condimentum suscipit, lorem felis viverra purus, a gravida ex velit id nisi. Maecenas nibh orci, faucibus nec tempor ut.</p>
+          <p>Structured help for Indian legal issues across labour, family, property, cyber, consumer, and constitutional matters.</p>
         </div>
         <div className="feature-card">
           <div className="icon-wrapper">
              <div className="icon-inner">🏆</div>
           </div>
           <h3>Top Legal Experts</h3>
-          <p>Quisque varius, nisi finibus condimentum suscipit, lorem felis viverra purus, a gravida ex velit id nisi. Maecenas nibh orci, faucibus nec tempor ut.</p>
+          <p>Designed to help users understand categories, severity, and the likely next legal step before approaching counsel.</p>
         </div>
         <div className="feature-card">
           <div className="icon-wrapper">
              <div className="icon-inner">💰</div>
           </div>
           <h3>Competitive Pricing</h3>
-          <p>Quisque varius, nisi finibus condimentum suscipit, lorem felis viverra purus, a gravida ex velit id nisi. Maecenas nibh orci, faucibus nec tempor ut.</p>
+          <p>A student-built legal AI experience that keeps guidance accessible while following a professional app flow.</p>
         </div>
       </section>
 
@@ -84,8 +84,8 @@ const Dashboard = () => {
       <section className="dash-split-content">
         <div className="split-text left-text">
             <h5 className="sub-heading">ABOUT US</h5>
-            <h2>As For Lawyers, It's More Fun To Play One Than To Be One</h2>
-            <p>Morbi in ipsum lobortis, consequat neque a, consectetur ante. Ut viverra elit quam, in accumsan mauris ultrices non. Nullam sapien lectus, malesuada in euismod in, hendrerit metus quis sit amet lectus.</p>
+            <h2>Built Around Real Indian Legal Problems People Face Every Day</h2>
+            <p>LawBridge AI is designed to classify common Indian legal issues in simple language so users can understand what kind of matter they may be dealing with before taking further steps.</p>
             <a href="#" className="read-more">- Read More -</a>
         </div>
         
@@ -96,9 +96,9 @@ const Dashboard = () => {
         </div>
 
         <div className="split-text right-text">
-             <h5 className="sub-heading">WHY CHOSE US</h5>
-            <h2>Lawyers Spend A Great Deal Of Their Time Shoveling Smoke</h2>
-            <p>Morbi in ipsum lobortis, consequat neque a, consectetur ante. Ut viverra elit quam, in accumsan mauris ultrices non. Nullam sapien lectus, malesuada in euismod in, hendrerit metus quis sit amet lectus.</p>
+             <h5 className="sub-heading">WHY CHOOSE US</h5>
+            <h2>Focused On Indian Categories, Clear Severity, And Simple Guidance</h2>
+            <p>The platform is trained on legal issue descriptions covering labour disputes, family matters, consumer complaints, cyber fraud, property disputes, criminal issues, contracts, and constitutional concerns.</p>
              <a href="#" className="read-more">- Read More -</a>
         </div>
       </section>
@@ -106,7 +106,7 @@ const Dashboard = () => {
       {/* Quote Form Section */}
       <section className="dash-quote">
          <div className="quote-container">
-            <h2>Get A Free Quote</h2>
+            <h2>Describe Your Legal Issue</h2>
             <form className="quote-form">
                 <input type="text" placeholder="First Name*" required />
                 <input type="text" placeholder="Last Name*" required />
@@ -126,23 +126,23 @@ const Dashboard = () => {
          <div className="grid-container">
              <div className="service-item">
                  <div className="svc-icon">📍</div>
-                 <p>Immigration Law</p>
+                 <p>Constitutional Law</p>
              </div>
              <div className="service-item">
                  <div className="svc-icon">🎓</div>
-                 <p>Education Law</p>
+                 <p>Consumer Protection</p>
              </div>
              <div className="service-item">
                  <div className="svc-icon">🛡️</div>
-                 <p>Insurance Law</p>
+                 <p>Cyber Law</p>
              </div>
              <div className="service-item">
                  <div className="svc-icon">💼</div>
-                 <p>Business Law</p>
+                 <p>Contract Law</p>
              </div>
              <div className="service-item">
                  <div className="svc-icon">🚗</div>
-                 <p>DUI Law</p>
+                 <p>Property Law</p>
              </div>
              <div className="service-item">
                  <div className="svc-icon">⚖️</div>
@@ -150,7 +150,7 @@ const Dashboard = () => {
              </div>
              <div className="service-item">
                  <div className="svc-icon">👷</div>
-                 <p>Employment Law</p>
+               <p>Labour Law</p>
              </div>
              <div className="service-item">
                  <div className="svc-icon">👨‍👩‍👧‍👦</div>
