@@ -57,11 +57,12 @@ const Navbar = () => {
 
         {/* Desktop Nav Links */}
         <div className={`navbar__links ${menuOpen ? "navbar__links--open" : ""}`}>
-          <button className="navbar__link" onClick={() => scrollToSection("about")}>About us</button>
+          <button className="navbar__link" onClick={() => scrollToSection("hero")}>Home</button>
           <button className="navbar__link" onClick={() => scrollToSection("services")}>Services</button>
-          <button className="navbar__link" onClick={() => scrollToSection("features")}>Practice</button>
+          <button className="navbar__link" onClick={() => scrollToSection("team")}>Team</button>
+          <button className="navbar__link" onClick={() => scrollToSection("about")}>About us</button>
+          <button className="navbar__link" onClick={() => scrollToSection("news")}>News</button>
           <button className="navbar__link" onClick={() => scrollToSection("quote")}>Contact</button>
-          <button className="navbar__link" onClick={() => scrollToSection("howitworks")}>How It Works</button>
 
           {/* Mobile-only auth */}
           <div className="navbar__mobile-auth">

@@ -71,6 +71,77 @@ const steps = [
   { n: "03", title: "Get Actionable Results", desc: "Receive step-by-step guidance, document templates, or matched lawyer recommendations." },
 ];
 
+const trustCards = [
+  {
+    icon: "⚙️",
+    title: "Professional Services",
+    desc: "Structured help for Indian legal issues across labour, family, property, cyber, consumer, and constitutional matters.",
+  },
+  {
+    icon: "🏆",
+    title: "Top Legal Experts",
+    desc: "Designed to help users understand categories, severity, and the likely next legal step before approaching counsel.",
+  },
+  {
+    icon: "💼",
+    title: "Trusted Legal Workflow",
+    desc: "A calmer, law-firm inspired interface that builds confidence before users move into AI-assisted analysis.",
+  },
+];
+
+const partnerMarks = [
+  "J.H RICK MEYERS",
+  "MAC NET STUDIO",
+  "firStudio PRINTING",
+  "cronit",
+  "STALLION",
+  "BAVER boutique",
+];
+
+const teamMembers = [
+  {
+    name: "Advisory Workflow",
+    role: "Legal intake design",
+    body: "Built to help users frame their issue clearly before moving into formal legal action or professional consultation.",
+  },
+  {
+    name: "AI Case Review",
+    role: "Issue classification",
+    body: "The platform organizes facts into understandable legal categories so the next step feels less uncertain.",
+  },
+  {
+    name: "Document Support",
+    role: "Practical legal output",
+    body: "Templates, summaries, and structured guidance keep the product useful even before a lawyer is involved.",
+  },
+];
+
+const newsItems = [
+  {
+    title: "Clearer first-step guidance for labour and salary disputes",
+    body: "A more professional intake experience helps users describe workplace issues without legal jargon.",
+  },
+  {
+    title: "Consumer and cyber issue triage with calmer presentation",
+    body: "We present classification and next-step guidance in a format that feels reliable, restrained, and easier to trust.",
+  },
+  {
+    title: "Property and family matters organized into simpler legal paths",
+    body: "Dashboard-inspired sections now live inside Home so users can understand the service before signing in.",
+  },
+];
+
+const legalAreas = [
+  "Constitutional Law",
+  "Consumer Protection",
+  "Cyber Law",
+  "Contract Law",
+  "Property Law",
+  "Criminal Law",
+  "Labour Law",
+  "Family Law",
+];
+
 const Home = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -191,6 +262,26 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="firm-strip">
+        <div className="container firm-strip__cards">
+          {trustCards.map((card) => (
+            <article className="firm-strip__card" key={card.title}>
+              <div className="firm-strip__icon" aria-hidden="true">{card.icon}</div>
+              <h3>{card.title}</h3>
+              <p>{card.desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="partner-strip" aria-label="Trusted brands and partner marks">
+        <div className="container partner-strip__inner">
+          {partnerMarks.map((mark) => (
+            <span className="partner-strip__mark" key={mark}>{mark}</span>
+          ))}
+        </div>
+      </section>
+
       {/* ── Services / Features ──────────────── */}
       <section className="features section" id="services">
         <div className="container">
@@ -221,6 +312,44 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="editorial section" id="team">
+        <div className="container editorial__layout">
+          <div className="editorial__panel editorial__panel--left">
+            <span className="section-label">About Us</span>
+            <h2 className="section-title">Built Around Real Indian Legal Problems People Face Every Day</h2>
+            <p className="section-body">
+              LawBridge AI is designed to classify common Indian legal issues in simple language so users can understand what kind of matter they may be dealing with before taking further steps.
+            </p>
+            <a href="#quote" className="btn-outline">Discuss Your Issue</a>
+          </div>
+
+          <div className="editorial__visual">
+            <div className="editorial__halo" />
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&auto=format&fit=crop&q=60"
+              alt="Legal professional"
+            />
+          </div>
+
+          <div className="editorial__panel editorial__panel--right">
+            <span className="section-label">Why Choose Us</span>
+            <h2 className="section-title">Focused On Indian Categories, Clear Severity, And Simple Guidance</h2>
+            <p className="section-body">
+              The platform is trained on legal issue descriptions covering labour disputes, family matters, consumer complaints, cyber fraud, property disputes, criminal issues, contracts, and constitutional concerns.
+            </p>
+            <div className="editorial__team-list">
+              {teamMembers.map((member) => (
+                <article className="editorial__team-card" key={member.name}>
+                  <h3>{member.name}</h3>
+                  <p className="editorial__role">{member.role}</p>
+                  <p>{member.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── How It Works ─────────────────────── */}
       <section className="how-it-works section" id="howitworks">
         <div className="container">
@@ -236,6 +365,22 @@ const Home = () => {
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="insights section" id="news">
+        <div className="container">
+          <span className="section-label">News</span>
+          <h2 className="section-title insights__title">Recent Product And Legal Service Updates</h2>
+          <div className="insights__grid">
+            {newsItems.map((item) => (
+              <article className="insights__card" key={item.title}>
+                <span className="insights__tag">LawBridge Update</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -265,6 +410,28 @@ const Home = () => {
           </form>
         </div>
         <div className="quote__blob" />
+      </section>
+
+      <section className="practice-grid section">
+        <div className="container">
+          <div className="practice-grid__header">
+            <div>
+              <span className="section-label">Services</span>
+              <h2 className="section-title practice-grid__title">Core Legal Areas</h2>
+            </div>
+            <button type="button" className="btn-secondary" onClick={() => scrollToSection("services")}>
+              View All
+            </button>
+          </div>
+          <div className="practice-grid__items">
+            {legalAreas.map((area) => (
+              <article className="practice-grid__item" key={area}>
+                <div className="practice-grid__icon" aria-hidden="true">⚖️</div>
+                <p>{area}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── Footer ───────────────────────────── */}
