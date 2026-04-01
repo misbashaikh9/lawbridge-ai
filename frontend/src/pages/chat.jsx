@@ -21,6 +21,21 @@ const buildAssistantMessage = (category, severity) => {
   return `This issue appears to fall under ${category} and the current severity looks ${severity.toLowerCase()}.`;
 };
 
+const buildErrorMessage = (error) => {
+  const status = error.response?.status;
+  const code = error.response?.data?.code;
+
+  if (status === 503 || code === "AI_TEMPORARILY_UNAVAILABLE") {
+    return "The AI service is waking up or temporarily busy. Please try again in a few seconds.";
+  }
+
+  if (status === 400) {
+    return "Please enter a clearer description before sending the request.";
+  }
+
+  return "The AI service could not analyze that issue just now. Try again in a moment.";
+};
+
 export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -61,7 +76,7 @@ export default function Chat() {
         ...prev,
         {
           type: "ai",
-          text: "The AI service could not analyze that issue just now. Try again in a moment.",
+          text: buildErrorMessage(err),
         },
       ]);
     } finally {
