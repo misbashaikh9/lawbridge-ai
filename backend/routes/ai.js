@@ -5,31 +5,95 @@ const axios = require("axios");
 const AI_SERVICE_URL = "https://lawbridge-ai-ai-service.onrender.com/predict";
 const AI_SERVICE_HEALTH_URL = "https://lawbridge-ai-ai-service.onrender.com/";
 const RETRYABLE_STATUS_CODES = new Set([408, 425, 429, 500, 502, 503, 504]);
+const AI_HEALTH_TIMEOUT_MS = 10000;
+const AI_REQUEST_TIMEOUT_MS = 20000;
+const AI_WARMUP_WINDOW_MS = 90000;
+const AI_WARMUP_RETRY_DELAY_MS = 2000;
+const AI_READY_CACHE_MS = 2 * 60 * 1000;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+let aiWarmupPromise = null;
+let aiLastReadyAt = 0;
+
+function isRetryableAiError(error) {
+  const status = error.response?.status;
+
+  return !status || RETRYABLE_STATUS_CODES.has(status) || error.code === "ECONNABORTED";
+}
+
+async function probeAiServiceReadiness(deadline) {
+  let lastError;
+
+  while (Date.now() < deadline) {
+    try {
+      await axios.get(AI_SERVICE_HEALTH_URL, { timeout: AI_HEALTH_TIMEOUT_MS });
+      aiLastReadyAt = Date.now();
+      return;
+    } catch (error) {
+      lastError = error;
+
+      if (!isRetryableAiError(error)) {
+        throw error;
+      }
+
+      const remaining = deadline - Date.now();
+
+      if (remaining <= 0) {
+        break;
+      }
+
+      await delay(Math.min(AI_WARMUP_RETRY_DELAY_MS, remaining));
+    }
+  }
+
+  throw lastError || new Error("AI service warmup timed out");
+}
+
+async function ensureAiServiceReady({ force = false } = {}) {
+  const recentlyReady = Date.now() - aiLastReadyAt < AI_READY_CACHE_MS;
+
+  if (!force && recentlyReady) {
+    return;
+  }
+
+  if (!aiWarmupPromise) {
+    const deadline = Date.now() + AI_WARMUP_WINDOW_MS;
+
+    aiWarmupPromise = probeAiServiceReadiness(deadline).finally(() => {
+      aiWarmupPromise = null;
+    });
+  }
+
+  return aiWarmupPromise;
+}
 
 async function requestAiAnalysis(question) {
   let lastError;
 
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
+      await ensureAiServiceReady({ force: attempt > 0 });
+
       const response = await axios.post(
         AI_SERVICE_URL,
         { text: question },
-        { timeout: 15000 }
+        { timeout: AI_REQUEST_TIMEOUT_MS }
       );
+
+      aiLastReadyAt = Date.now();
 
       return response.data;
     } catch (error) {
       lastError = error;
 
-      const status = error.response?.status;
-      const isRetryable = !status || RETRYABLE_STATUS_CODES.has(status) || error.code === "ECONNABORTED";
+      const isRetryable = isRetryableAiError(error);
 
       if (!isRetryable || attempt === 1) {
         throw error;
       }
 
+      aiLastReadyAt = 0;
       await delay(1200);
     }
   }
@@ -38,27 +102,7 @@ async function requestAiAnalysis(question) {
 }
 
 async function warmupAiService() {
-  let lastError;
-
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    try {
-      await axios.get(AI_SERVICE_HEALTH_URL, { timeout: 12000 });
-      return;
-    } catch (error) {
-      lastError = error;
-
-      const status = error.response?.status;
-      const isRetryable = !status || RETRYABLE_STATUS_CODES.has(status) || error.code === "ECONNABORTED";
-
-      if (!isRetryable || attempt === 1) {
-        throw error;
-      }
-
-      await delay(1000);
-    }
-  }
-
-  throw lastError;
+  await ensureAiServiceReady({ force: true });
 }
 
 router.get("/warmup", async (req, res) => {

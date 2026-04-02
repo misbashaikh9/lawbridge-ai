@@ -26,7 +26,7 @@ const buildErrorMessage = (error) => {
   const code = error.response?.data?.code;
 
   if (status === 503 || code === "AI_TEMPORARILY_UNAVAILABLE") {
-    return "The AI service is waking up or temporarily busy. Please try again in a few seconds.";
+    return "The AI service is still starting up. The first request can take longer than usual, so please try again shortly.";
   }
 
   if (status === 400) {
@@ -40,7 +40,6 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const warmupPromiseRef = useRef(null);
   const bottomRef = useRef(null);
 
   const resetConversation = () => {
@@ -53,16 +52,6 @@ export default function Chat() {
     const question = (presetQuestion ?? input).trim();
 
     if (!question || loading) return;
-
-    if (warmupPromiseRef.current) {
-      try {
-        await warmupPromiseRef.current;
-      } catch (error) {
-        console.error("AI warmup failed:", error);
-      } finally {
-        warmupPromiseRef.current = null;
-      }
-    }
 
     const userMsg = { type: "user", text: question };
     setMessages((prev) => [...prev, userMsg]);
@@ -107,15 +96,7 @@ export default function Chat() {
   }, [messages, loading]);
 
   useEffect(() => {
-    warmupPromiseRef.current = API.get("/api/ai/warmup");
-
-    warmupPromiseRef.current.catch((error) => {
-      console.error("AI warmup failed:", error);
-    });
-
-    return () => {
-      warmupPromiseRef.current = null;
-    };
+    API.get("/api/ai/warmup").catch(() => null);
   }, []);
 
   return (

@@ -203,18 +203,18 @@ const Home = () => {
         </div>
 
         {/* Stats strip */}
-        <div className="hero__stats">
+        {/* <div className="hero__stats">
           {stats.map((s) => (
             <div key={s.label} className="hero__stat">
               <span className="hero__stat-value">{s.value}</span>
               <span className="hero__stat-label">{s.label}</span>
             </div>
           ))}
-        </div>
+        </div> */}
 
-        {/* Decorative blobs */}
-        <div className="hero__blob hero__blob--1" />
-        <div className="hero__blob hero__blob--2" />
+        {/* Decorative blobs
+        // <div className="hero__blob hero__blob--1" />
+        // <div className="hero__blob hero__blob--2" /> */}
       </section>
 
       {/* ── About ────────────────────────────── */}
