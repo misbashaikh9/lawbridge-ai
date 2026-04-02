@@ -1,11 +1,31 @@
-/* ================================================
-   INDEX.CSS — Global Reset & Defaults
-   ================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0F172A;
+  --color-navy-light: #1E293B;
+  --color-navy-dark: #020617;
+  --color-gold: #BFA37A;
+  --color-gold-light: #D4BA8F;
+  --color-gold-dark: #A88D60;
+  --color-ivory: #FAFAF9;
+  --color-offwhite: #FAFAF9;
+  --color-charcoal: #1A1A1A;
+  --color-gray: #6B7280;
+  --color-gray-light: #9CA3AF;
+
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+}
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -17,6 +37,9 @@ body {
   -ms-overflow-style: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-body);
+  background-color: var(--color-offwhite);
+  color: var(--color-charcoal);
 }
 
 html::-webkit-scrollbar,
@@ -33,6 +56,7 @@ body::-webkit-scrollbar {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
+  font-family: var(--font-heading);
 }
 
 p {
