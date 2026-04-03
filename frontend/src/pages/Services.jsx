@@ -85,22 +85,16 @@ const Services = () => {
   return (
     <section id="services" className="py-28 bg-white relative">
       {/* Thin top accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gold/30" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-[#E4574E]/40" />
 
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
         {/* Header */}
-        <div className="text-center mb-20">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-12 h-px bg-gold" />
-            <span className="text-gold text-[12px] tracking-[0.2em] uppercase font-semibold">
-              What We Offer
-            </span>
-            <div className="w-12 h-px bg-gold" />
-          </div>
-          <h2 className="font-heading text-4xl md:text-[44px] font-normal text-charcoal mb-5">
-            Our <span className="italic text-gold">Services</span>
+        <div className="text-center mb-16">
+          <span className="inline-block text-[#E4574E] text-[12px] tracking-[0.15em] uppercase font-semibold mb-4">What We Offer</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#18181b] mb-4">
+            Our Services
           </h2>
-          <p className="text-gray max-w-xl mx-auto leading-[1.8] text-[15px]">
+          <p className="text-[#23263a] max-w-xl mx-auto leading-[1.8] text-[15px]">
             AI-powered legal tools and expert counsel — designed to make justice
             accessible, efficient, and transparent.
           </p>
@@ -111,30 +105,30 @@ const Services = () => {
           {services.map((service) => (
             <div
               key={service.title}
-              className="group relative border border-gray-200 bg-ivory p-8 hover:border-gold/40 hover:shadow-lg transition-all duration-500"
+              className="group relative border border-[#E4574E] bg-white p-8 hover:border-[#c13d36] hover:shadow-lg transition-all duration-500"
             >
               {/* Tag */}
-              <span className="absolute top-6 right-6 text-[10px] tracking-[0.15em] uppercase text-gray font-medium group-hover:text-gold transition-colors duration-300">
+              <span className="absolute top-6 right-6 text-[10px] tracking-[0.15em] uppercase text-[#E4574E] font-medium group-hover:text-[#c13d36] transition-colors duration-300">
                 {service.tag}
               </span>
 
               {/* Icon */}
-              <div className="text-gold/70 mb-6 group-hover:text-gold transition-colors duration-300">
+              <div className="mb-6" style={{ color: '#E4574E' }}>
                 {service.icon}
               </div>
 
               {/* Title */}
-              <h3 className="font-heading text-xl text-charcoal mb-3 group-hover:text-navy transition-colors duration-300">
+              <h3 className="text-lg font-semibold text-[#18181b] mb-3 group-hover:text-[#18181b] transition-colors duration-200">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray text-sm leading-[1.8] group-hover:text-charcoal/70 transition-colors duration-300">
+              <p className="text-[#23263a] text-sm leading-[1.8] group-hover:text-[#18181b]/70 transition-colors duration-300">
                 {service.description}
               </p>
 
               {/* Bottom accent */}
-              <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gold group-hover:w-full transition-all duration-500" />
+              <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#E4574E] group-hover:w-full transition-all duration-500" />
             </div>
           ))}
         </div>

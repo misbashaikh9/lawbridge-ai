@@ -1,13 +1,12 @@
-import LawNavbar from "../components/lawfirm/LawNavbar";
-import ServicesSection from "../components/lawfirm/Services";
-import LawFooter from "../components/lawfirm/LawFooter";
+import LawNavbar from "./LawNavbar";
+import ServicesSection from "./Services";
+import LawFooter from "./LawFooter";
 
 const ServicesPage = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-offwhite">
       <LawNavbar />
-      {/* Spacer for fixed navbar */}
-      <div className="h-20" />
+      <div className="h-16" />
       <ServicesSection />
       <LawFooter />
     </div>

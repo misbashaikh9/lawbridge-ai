@@ -60,6 +60,7 @@ export default function Chat() {
   const [loading,  setLoading]   = useState(false);
   const warmupPromiseRef = useRef(null);
   const bottomRef        = useRef(null);
+  const [abortController, setAbortController] = useState(null);
 
   const resetConversation = () => {
     if (loading) return;
@@ -81,9 +82,17 @@ export default function Chat() {
     setInput("");
     setLoading(true);
 
+    // Create and set AbortController
+    const controller = new AbortController();
+    setAbortController(controller);
+
     try {
       // Backend proxies to ai-service /predict (see backend/routes/ai.js)
-      const res = await API.post("/api/ai/query", { question });
+      const res = await API.post(
+        "/api/ai/query",
+        { question },
+        { signal: controller.signal }
+      );
 
       const { category, severity, full_response, error } = res.data;
 
@@ -97,13 +106,18 @@ export default function Chat() {
         { type: "ai", full_response, category, severity },
       ]);
     } catch (err) {
-      console.error(err);
-      setMessages((prev) => [
-        ...prev,
-        { type: "ai", text: buildErrorMessage(err) },
-      ]);
+      if (err.name === "CanceledError" || err.name === "AbortError") {
+        setMessages((prev) => [...prev, { type: "ai", text: "Analysis stopped by user." }]);
+      } else {
+        console.error(err);
+        setMessages((prev) => [
+          ...prev,
+          { type: "ai", text: buildErrorMessage(err) },
+        ]);
+      }
     } finally {
       setLoading(false);
+      setAbortController(null);
     }
   };
 
@@ -127,12 +141,12 @@ export default function Chat() {
         {/* Sidebar */}
         <aside className="chat-sidebar" aria-label="Chat navigation">
           <div className="chat-sidebar__top">
-            <Link to="/dashboard" className="chat-sidebar__back" aria-label="Back to dashboard">
+            <Link to="/" className="chat-sidebar__back" aria-label="Back to home">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
                 strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M15 18l-6-6 6-6" />
               </svg>
-              <span>Back to dashboard</span>
+              <span>Back to home</span>
             </Link>
 
             <div className="chat-sidebar__brand">
@@ -253,6 +267,18 @@ export default function Chat() {
                 disabled={loading}>
                 {loading ? "Analyzing..." : "Analyze"}
               </button>
+              {loading && (
+                <button
+                  type="button"
+                  className="chat-composer__button"
+                  style={{ background: '#E4574E', marginLeft: 8 }}
+                  onClick={() => {
+                    if (abortController) abortController.abort();
+                  }}
+                >
+                  Stop
+                </button>
+              )}
             </div>
           </div>
         </main>
