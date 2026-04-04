@@ -8,8 +8,8 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
-    { label: "Home", href: "/#hero" },
-    { label: "About", href: "/#about" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Blogs", href: "/blogs" },
   ];
@@ -17,11 +17,8 @@ const Navbar = () => {
   const isHome = location.pathname === "/";
 
   const isActive = (href) => {
-    if (href === "/#hero") {
-      return location.pathname === "/" && (!location.hash || location.hash === "#hero");
-    }
-    if (href.startsWith("/#")) {
-      return location.pathname === "/" && location.hash === href.slice(1);
+    if (href === "/") {
+      return location.pathname === "/";
     }
     return location.pathname === href;
   };
@@ -42,21 +39,49 @@ const Navbar = () => {
         >
           {navLinks.map((link) => {
             const active = isActive(link.href);
-            // Remove dropdown for Services, render as normal link
+            if (link.label === "Services") {
+              return (
+                <div key="Services" className="relative group select-none">
+                  <div
+                    className={[
+                      "relative flex items-center gap-1 px-5 py-1.5 rounded-full text-[13px] font-medium cursor-pointer",
+                      "transition-all duration-300 ease-in-out",
+                      "text-gray-800 hover:text-gray-900 hover:bg-white hover:shadow-sm",
+                    ].join(" ")}
+                  >
+                    {link.label}
+                    <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                  {/* Dropdown menu */}
+                  <div className="absolute left-0 top-full min-w-[200px] rounded-xl bg-white shadow-lg border border-gray-100 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto hover:opacity-100 hover:pointer-events-auto transition-opacity duration-200 z-50">
+                    <Link to="/services/consultation" className="block px-5 py-2 text-gray-700 hover:bg-gray-50 rounded-t-xl">Consultation</Link>
+                    <Link to="/services/case-review" className="block px-5 py-2 text-gray-700 hover:bg-gray-50">Case Review</Link>
+                    <Link to="/services/legal-docs" className="block px-5 py-2 text-gray-700 hover:bg-gray-50">Legal Documents</Link>
+                    <Link to="/services/ai-verification" className="block px-5 py-2 text-gray-700 hover:bg-gray-50 rounded-b-xl">AI Chat Box Article Verification</Link>
+                  </div>
+                </div>
+              );
+            }
             return (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
+                to={link.href}
                 className={[
                   "relative px-5 py-1.5 rounded-full text-[13px] font-medium",
                   "transition-all duration-300 ease-in-out",
                   isTransparent
-                    ? "text-white/80 hover:text-white hover:bg-white/20 hover:shadow-sm"
+                    ? active
+                      ? "text-white bg-white/20 shadow-sm"
+                      : "text-white/80 hover:text-white hover:bg-white/20 hover:shadow-sm"
+                    : active
+                    ? "text-gray-900 bg-white shadow-sm"
                     : "text-gray-500 hover:text-gray-800 hover:bg-white hover:shadow-sm",
                 ].join(" ")}
               >
                 {link.label}
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -118,9 +143,9 @@ const Navbar = () => {
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
+                to={link.href}
                 className={`block text-[14px] font-medium px-4 py-2.5 rounded-xl transition-all duration-300 ease-in-out ${
                   active
                     ? "bg-gray-100 text-gray-900"
@@ -129,7 +154,7 @@ const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             );
           })}
           <div className="pt-3 mt-2 border-t border-gray-100 flex gap-3">
