@@ -76,7 +76,7 @@ const LawFooter = () => {
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#E4574E] text-sm mt-0.5">&#9679;</span>
-                <span className="text-white/40 text-sm">+91 98765 43210</span>
+                <span className="text-white/40 text-sm">+91 98981 04059</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#E4574E] text-sm mt-0.5">&#9679;</span>

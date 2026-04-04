@@ -87,25 +87,21 @@ const Services = () => {
       {/* Thin top accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-[#E4574E]/40" />
 
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block text-[#E4574E] text-[12px] tracking-[0.15em] uppercase font-semibold mb-4">What We Offer</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#18181b] mb-4">
-            Our Services
-          </h2>
-          <p className="text-[#23263a] max-w-xl mx-auto leading-[1.8] text-[15px]">
-            AI-powered legal tools and expert counsel — designed to make justice
-            accessible, efficient, and transparent.
-          </p>
+      <div className="max-w-7xl mx-auto px-8 lg:px-12 flex flex-col items-center">
+        {/* Call to Action Section */}
+        <div className="w-full flex flex-col items-center text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#18181b] mb-10">Start Your Legal Consultation Today</h2>
+          <p className="text-[#23263a] text-base mb-10">Get instant legal guidance powered by AI.</p>
+          <a href="/chat" className="inline-block px-6 py-3 rounded-lg bg-[#E4574E] text-white font-semibold shadow hover:bg-[#c13d36] transition-colors duration-200 mt-4">Start AI Chat</a>
         </div>
 
+
         {/* Cards grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {services.map((service) => (
             <div
               key={service.title}
-              className="group relative border border-[#E4574E] bg-white p-8 hover:border-[#c13d36] hover:shadow-lg transition-all duration-500"
+              className="group relative bg-white p-8 shadow hover:shadow-lg transition-all duration-500 rounded-xl"
             >
               {/* Tag */}
               <span className="absolute top-6 right-6 text-[10px] tracking-[0.15em] uppercase text-[#E4574E] font-medium group-hover:text-[#c13d36] transition-colors duration-300">
@@ -126,9 +122,6 @@ const Services = () => {
               <p className="text-[#23263a] text-sm leading-[1.8] group-hover:text-[#18181b]/70 transition-colors duration-300">
                 {service.description}
               </p>
-
-              {/* Bottom accent */}
-              <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#E4574E] group-hover:w-full transition-all duration-500" />
             </div>
           ))}
         </div>

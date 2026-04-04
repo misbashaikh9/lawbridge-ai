@@ -45,7 +45,7 @@ const WhyChooseUs = () => {
               to deliver unparalleled service and results.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
                 className="px-8 py-3.5 bg-[#E4574E] text-white font-semibold text-[13px] tracking-[0.06em] uppercase rounded-full hover:bg-[#c13d36] transition-all duration-300 text-center"
@@ -58,7 +58,7 @@ const WhyChooseUs = () => {
               >
                 Our Services
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Right */}
