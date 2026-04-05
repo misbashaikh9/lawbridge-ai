@@ -47,3 +47,16 @@ joblib.dump(category_model, open("category_model.pkl","wb"))
 joblib.dump(severity_model, open("severity_model.pkl","wb"))
 
 print("Models trained and saved!")
+
+# Load lawyer.csv
+lawyer_df = pd.read_csv("lawyer.csv", header=None, names=[
+    "name", "specialization", "location", "experience", "rating", "fees", "cases", "qualification", "contact"
+])
+
+# Convert to list of dicts
+lawyer_list = lawyer_df.to_dict(orient="records")
+
+# Save as pickle
+joblib.dump(lawyer_list, open("lawyers.pkl", "wb"))
+
+print("Lawyer data processed and saved as lawyers.pkl!")

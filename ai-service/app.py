@@ -2,6 +2,21 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from model import predict_text
+import joblib
+
+# Load lawyer data at startup
+try:
+    lawyers = joblib.load("lawyers.pkl")
+except Exception as e:
+    print(f"Could not load lawyers.pkl: {e}")
+    lawyers = []
+# ── Prompt builder ─────────────────────────────────────────────────────────────
+def recommend_lawyers(category, top_n=3):
+    # Filter lawyers by specialization/category
+    filtered = [l for l in lawyers if l["specialization"].strip().lower() == category.strip().lower()]
+    # Sort by rating (desc), then experience (desc)
+    filtered.sort(key=lambda l: (float(l["rating"]), int(l["experience"])), reverse=True)
+    return filtered[:top_n]
 import os
 from pathlib import Path
 import requests
@@ -34,52 +49,72 @@ class InputText(BaseModel):
 # ── Prompt builder ─────────────────────────────────────────────────────────────
 def build_prompt(question: str, category: str, severity: str) -> str:
     return f"""
-You are LawBridge AI, an expert Indian legal assistant.
+You are a professional Indian legal assistant.
 
-A user has submitted this legal problem:
+Analyze the user's issue and respond in a clear, structured, and professional format.
+
+STRICT INSTRUCTIONS:
+- Use simple English suitable for a common Indian citizen
+- Do NOT use emojis
+- Do NOT write long paragraphs
+- Use clear section headings (ALL CAPS)
+- Use round bullet points (●)
+- Keep responses concise and actionable
+- Always follow the exact format below
+
+User Problem:
 "{question}"
 
-Our system has already classified it as:
-- Legal Category: {category}
-- Severity: {severity}
+Predicted Category: {category}
+Predicted Severity: {severity}
 
-Generate a complete legal guidance response in EXACTLY this format.
-Do not skip any section. Do not add anything before or after.
+FORMAT:
 
-2. YOUR SCENARIO
-Problem:
-"{question}"
+CASE UNDERSTANDING
+This appears to be related to:
+● {category}
 
-3. WHICH LAW APPLIES?
-Category:
-{category}
+RELEVANT INDIAN LAWS
+● [Law Name with Year]
+● [Law Name with Year]
+● [Law Name with Year]
 
-Relevant Indian Laws:
-[List 3 to 4 relevant Indian acts with year]
+IMPORTANT RULE YOU SHOULD KNOW
+[Rule Name]
+[Explain in 2–3 simple sentences for a non-lawyer Indian citizen]
 
-4. IMPORTANT RULE YOU SHOULD KNOW
-[Name of the key rule]
-[Explain the rule in 2 to 3 simple sentences for a non-lawyer Indian citizen]
-So:
-[What is illegal in this situation — one line]
+WHAT IS ILLEGAL IN THIS SITUATION
+● [One clear sentence]
 
-5. WHAT YOU SHOULD DO (STEPS)
-Step 1: [Title]
-[What to do — 1 to 2 lines]
-Step 2: [Title]
-[What to do — 1 to 2 lines]
-Step 3: [Title]
-[What to do — 1 to 2 lines]
-Step 4: [Title]
-[What to do — 1 to 2 lines]
+WHAT YOU SHOULD DO
 
-6. WHEN IS THIS SERIOUS?
-Your case becomes SERIOUS if:
-[3 conditions that make it serious — one per line]
-Then:
-[What the user should do if serious — one line]
+Step 1: [Short Title]  
+[1–2 line explanation]
 
-Keep language very simple. Write for a non-lawyer Indian citizen.
+Step 2: [Short Title]  
+[1–2 line explanation]
+
+Step 3: [Short Title]  
+[1–2 line explanation]
+
+Step 4: [Short Title]  
+[1–2 line explanation]
+
+WHEN IS THIS SERIOUS
+
+Your case becomes serious if:
+● [Condition 1]
+● [Condition 2]
+● [Condition 3]
+
+IF THE MATTER IS SERIOUS
+● [Immediate action advice]
+
+IMPORTANT:
+- Never skip any section
+- Never merge sections
+- Always keep formatting consistent
+- Avoid legal jargon unless necessary
 """.strip()
 
 
@@ -145,10 +180,17 @@ def predict(data: InputText):
         full_response = call_groq(prompt)
         print("Groq response received.")
 
+
+        # Step 3 — Recommend lawyers if severity is serious
+        lawyer_recommendations = []
+        if severity.strip().lower() == "serious":
+            lawyer_recommendations = recommend_lawyers(category)
+
         return {
             "category":      category,
             "severity":      severity,
             "full_response": full_response,
+            "lawyers":       lawyer_recommendations,
         }
 
     except RuntimeError as e:
