@@ -58,6 +58,10 @@ export default function Chat() {
   const [messages, setMessages]  = useState([]);
   const [input,    setInput]     = useState("");
   const [loading,  setLoading]   = useState(false);
+  // Lawyer recommendation UI state
+  const [showLawyerPrompt, setShowLawyerPrompt] = useState(false);
+  const [lawyerChoices, setLawyerChoices] = useState([]);
+  const [selectedLawyer, setSelectedLawyer] = useState(null);
   const warmupPromiseRef = useRef(null);
   const bottomRef        = useRef(null);
   const [abortController, setAbortController] = useState(null);
@@ -94,17 +98,31 @@ export default function Chat() {
         { signal: controller.signal }
       );
 
-      const { category, severity, full_response, error } = res.data;
+      const { category, severity, full_response, lawyers, error } = res.data;
 
       if (error) {
         setMessages((prev) => [...prev, { type: "ai", text: `Error: ${error}` }]);
+        setShowLawyerPrompt(false);
+        setLawyerChoices([]);
+        setSelectedLawyer(null);
         return;
       }
 
       setMessages((prev) => [
         ...prev,
-        { type: "ai", full_response, category, severity },
+        { type: "ai", full_response, category, severity, lawyers },
       ]);
+
+      // If lawyers are present, show the prompt after Groq response
+      if (lawyers && lawyers.length > 0) {
+        setShowLawyerPrompt(true);
+        setLawyerChoices(lawyers);
+        setSelectedLawyer(null);
+      } else {
+        setShowLawyerPrompt(false);
+        setLawyerChoices([]);
+        setSelectedLawyer(null);
+      }
     } catch (err) {
       if (err.name === "CanceledError" || err.name === "AbortError") {
         setMessages((prev) => [...prev, { type: "ai", text: "Analysis stopped by user." }]);
@@ -203,6 +221,7 @@ export default function Chat() {
               </div>
             )}
 
+
             {messages.map((msg, index) => (
               <div key={`${msg.type}-${index}`}
                 className={`chat-message chat-message--${msg.type}`}>
@@ -225,6 +244,59 @@ export default function Chat() {
                               {msg.severity}
                             </span>
                           )}
+                        </div>
+                      )}
+                      {/* Lawyer recommendation prompt and choices */}
+                      {index === messages.length - 1 && showLawyerPrompt && lawyerChoices.length > 0 && !selectedLawyer && (
+                        <div className="chat-lawyer-recommend" style={{ marginTop: 24, textAlign: 'center' }}>
+                          <p style={{ fontWeight: 600, fontSize: 18, marginBottom: 16 }}>Would you like a lawyer recommendation?</p>
+                          <div style={{ display: 'flex', justifyContent: 'center', gap: 16 }}>
+                            <button className="chat-lawyer-btn" style={{ padding: '10px 24px', borderRadius: 8, border: '1px solid #ccc', background: '#fff', color: '#E4574E', fontWeight: 600, cursor: 'pointer' }} onClick={() => setShowLawyerPrompt(false)}>No Thanks</button>
+                            <button className="chat-lawyer-btn chat-lawyer-btn--primary" style={{ padding: '10px 24px', borderRadius: 8, border: 'none', background: '#E4574E', color: '#fff', fontWeight: 600, cursor: 'pointer', boxShadow: '0 2px 8px #e4574e22' }} onClick={() => setShowLawyerPrompt('choose')}>Want a Lawyer Recommendation?</button>
+                          </div>
+                        </div>
+                      )}
+                      {/* Show lawyer choices if user wants recommendation */}
+                      {index === messages.length - 1 && showLawyerPrompt === 'choose' && lawyerChoices.length > 0 && !selectedLawyer && (
+                        <div className="chat-lawyer-choices" style={{ marginTop: 24 }}>
+                          <p style={{ fontWeight: 600, fontSize: 17, marginBottom: 16 }}>Select a lawyer:</p>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                            {lawyerChoices.map((lawyer, i) => (
+                              <button
+                                key={i}
+                                className="chat-lawyer-choice"
+                                style={{
+                                  display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
+                                  padding: 18, borderRadius: 12, border: '1.5px solid #E4574E', background: '#fff', cursor: 'pointer',
+                                  boxShadow: '0 2px 8px #e4574e11', transition: 'box-shadow 0.2s',
+                                  fontSize: 16, fontWeight: 500, color: '#222',
+                                }}
+                                onClick={() => setSelectedLawyer(lawyer)}
+                                onMouseOver={e => e.currentTarget.style.boxShadow = '0 4px 16px #e4574e33'}
+                                onMouseOut={e => e.currentTarget.style.boxShadow = '0 2px 8px #e4574e11'}
+                              >
+                                <span style={{ fontSize: 18, fontWeight: 700, color: '#E4574E' }}>{lawyer.name}</span>
+                                <span style={{ fontSize: 14, color: '#555', margin: '2px 0 4px 0' }}>{lawyer.specialization} • {lawyer.qualification}</span>
+                                <span style={{ fontSize: 14, color: '#888' }}>⭐ {lawyer.rating} &nbsp; | &nbsp; {lawyer.experience} yrs exp &nbsp; | &nbsp; ₹{lawyer.fees} fees</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {/* Show selected lawyer details */}
+                      {index === messages.length - 1 && selectedLawyer && (
+                        <div className="chat-lawyer-details" style={{ marginTop: 28, border: '1.5px solid #E4574E', borderRadius: 14, background: '#fff', padding: 24, maxWidth: 400, marginLeft: 'auto', marginRight: 'auto', boxShadow: '0 2px 12px #e4574e11' }}>
+                          <h4 style={{ color: '#E4574E', fontWeight: 800, fontSize: 22, marginBottom: 12 }}>Lawyer Details</h4>
+                          <p><b>Name:</b> {selectedLawyer.name}</p>
+                          <p><b>Specialization:</b> {selectedLawyer.specialization}</p>
+                          <p><b>Location:</b> {selectedLawyer.location}</p>
+                          <p><b>Experience:</b> {selectedLawyer.experience} years</p>
+                          <p><b>Rating:</b> {selectedLawyer.rating}★</p>
+                          <p><b>Fees:</b> ₹{selectedLawyer.fees}</p>
+                          <p><b>Cases handled:</b> {selectedLawyer.cases}</p>
+                          <p><b>Qualification:</b> {selectedLawyer.qualification}</p>
+                          <p><b>Contact:</b> {selectedLawyer.contact}</p>
+                          <button className="chat-lawyer-btn" style={{ marginTop: 16, padding: '8px 20px', borderRadius: 8, border: '1px solid #ccc', background: '#fff', color: '#E4574E', fontWeight: 600, cursor: 'pointer' }} onClick={() => setSelectedLawyer(null)}>Back to list</button>
                         </div>
                       )}
                     </>
