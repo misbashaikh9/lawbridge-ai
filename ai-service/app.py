@@ -1,3 +1,58 @@
+from pydantic import BaseModel
+from fastapi.responses import PlainTextResponse
+import datetime
+# --- Email Generation Endpoint ---
+class EmailRequest(BaseModel):
+    sender_name: str
+    recipient_name: str
+    recipient_email: str
+    category: str
+    description: str
+    case_details: str = ""
+
+@app.post("/generate-email", tags=["Document"], summary="Generate legal email draft", response_description="Legal email draft as plain text")
+async def generate_email(request: EmailRequest):
+    try:
+        today = datetime.date.today().strftime("%d %B %Y")
+        email_template = f"""
+Subject: Legal Notice Regarding {request.category}
+
+To: {request.recipient_name} <{request.recipient_email}>
+Date: {today}
+
+Dear {request.recipient_name},
+
+I, {request.sender_name}, am writing to formally address the following legal matter:
+
+{request.description}
+
+{request.case_details if request.case_details else ''}
+
+I request your prompt attention to this issue. Please respond within 7 days to avoid further legal action.
+
+Sincerely,
+{request.sender_name}
+"""
+        return PlainTextResponse(email_template.strip())
+    except Exception as e:
+        logger.error(f"/generate-email error: {e}")
+        return PlainTextResponse(f"Error: {str(e)}", status_code=500)
+from fastapi import Query
+# --- Lawyer Recommendation Endpoint ---
+from fastapi.responses import JSONResponse
+
+@app.post("/recommend-lawyers", tags=["Lawyer"], summary="Get lawyer recommendations", response_description="List of recommended lawyers")
+async def recommend_lawyers_endpoint(
+    category: str = Query(..., description="Legal category, e.g. 'Labour Law'"),
+    severity: str = Query(..., description="Severity, e.g. 'Moderate', 'Serious'"),
+    top_n: int = Query(3, description="Number of lawyers to recommend")
+):
+    try:
+        recs = recommend_lawyers(category, severity, top_n=top_n)
+        return JSONResponse(content={"lawyers": recs})
+    except Exception as e:
+        logger.error(f"/recommend-lawyers error: {e}")
+        return JSONResponse(content={"error": str(e)}, status_code=500)
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, ValidationError

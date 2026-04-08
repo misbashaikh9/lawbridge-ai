@@ -121,10 +121,29 @@ export default function Chat() {
         },
       ]);
 
+      // Helper: detect lawyer recommendation in text
+      const mentionsLawyer = (txt) => {
+        if (!txt) return false;
+        const patterns = [
+          /consult (an? )?lawyer/i,
+          /seek (legal )?counsel/i,
+          /contact (an? )?attorney/i,
+          /advis(e|ory) (from|with) (an? )?lawyer/i,
+          /legal (advice|assistance|help)/i,
+          /professional legal guidance/i,
+        ];
+        return patterns.some((re) => re.test(txt));
+      };
+
       // If lawyers are present, show the prompt after Groq response
       if (lawyers && lawyers.length > 0) {
         setShowLawyerPrompt(true);
         setLawyerChoices(lawyers);
+        setSelectedLawyer(null);
+      } else if (mentionsLawyer(solution) || mentionsLawyer(action)) {
+        // If solution or action text suggests a lawyer, show generic prompt
+        setShowLawyerPrompt(true);
+        setLawyerChoices([]); // No specific lawyers, but show prompt
         setSelectedLawyer(null);
       } else {
         setShowLawyerPrompt(false);

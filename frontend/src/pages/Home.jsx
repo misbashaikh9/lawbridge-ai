@@ -29,57 +29,7 @@ const Home = () => {
       <About />
       <WhyChooseUs />
 
-      {/* Contact Section */}
-      <section id="contact" className="py-28 bg-[#f8f8f8] relative">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#E4574E] to-transparent" />
-        <div className="max-w-3xl mx-auto px-8 lg:px-12">
-          <div className="text-center mb-14">
-            <span className="inline-block text-[#E4574E] text-[12px] tracking-[0.15em] uppercase font-semibold mb-4">Get In Touch</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#18181b] mb-4">
-              Schedule a Consultation
-            </h2>
-            <p className="text-[#23263a] leading-[1.8] text-[15px]">
-              Describe your legal situation and our team will respond within 24 hours.
-            </p>
-          </div>
-
-          <form
-            className="border border-[#E4574E] rounded-xl p-10 md:p-12 bg-white"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div className="grid sm:grid-cols-2 gap-5 mb-5">
-              <input
-                type="text"
-                placeholder="Your Full Name"
-                required
-                className="w-full px-5 py-3.5 border border-[#E4574E] bg-white rounded-lg text-[#18181b] text-sm placeholder:text-[#E4574E] focus:outline-none focus:border-[#E4574E] transition-colors duration-200"
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                required
-                className="w-full px-5 py-3.5 border border-[#E4574E] bg-white rounded-lg text-[#18181b] text-sm placeholder:text-[#E4574E] focus:outline-none focus:border-[#E4574E] transition-colors duration-200"
-              />
-            </div>
-            <textarea
-              placeholder="Briefly describe your legal issue..."
-              rows={5}
-              required
-              className="w-full px-5 py-3.5 border border-[#E4574E] bg-white rounded-lg text-[#18181b] text-sm placeholder:text-[#E4574E] focus:outline-none focus:border-[#E4574E] transition-colors duration-200 resize-none mb-7"
-            />
-            <button
-              type="submit"
-              className="w-full sm:w-auto px-10 py-3.5 bg-[#E4574E] text-white font-semibold text-[13px] tracking-wide rounded-lg hover:bg-[#c13d36] transition-all duration-200 flex items-center justify-center gap-3 mx-auto"
-            >
-              Send Message
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-          </form>
-        </div>
-      </section>
-
+    
       <LawFooter />
 
       {/* Floating AI Button */}

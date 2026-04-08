@@ -14,12 +14,7 @@ const LawFooter = () => {
               Schedule your free consultation and navigate your legal matters with confidence.
             </p>
           </div>
-          <Link
-            to="/signup"
-            className="shrink-0 px-10 py-3.5 bg-[#E4574E] text-white font-semibold text-[13px] tracking-wide rounded-lg hover:bg-[#c13d36] transition-all duration-200"
-          >
-            Free Consultation
-          </Link>
+        
         </div>
       </div>
 
@@ -105,3 +100,5 @@ const LawFooter = () => {
 };
 
 export default LawFooter;
+
+
