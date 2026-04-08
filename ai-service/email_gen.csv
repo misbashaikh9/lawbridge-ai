@@ -1,0 +1,636 @@
+sender_name,recipient_name,category,description,case_details,email_text
+Rahul Sharma,ABC Pvt Ltd,Labour,Delayed salary payment,Salary for two months remains unpaid despite reminders,"Subject: Notice for Non-payment of Salary
+
+Dear Sir/Madam,
+
+I am writing to formally notify you regarding the non-payment of my salary for the past two months. Despite multiple reminders, the dues remain outstanding.
+
+This constitutes a violation of employment obligations. I request immediate payment of the pending amount.
+
+Kindly treat this matter with urgency.
+
+Sincerely,
+Rahul Sharma"
+Priya Mehta,XYZ Retail,Consumer,Defective appliance received,Product malfunctioned within 2 days of purchase,"Subject: Complaint Regarding Defective Product
+
+Dear Sir/Madam,
+
+I wish to bring to your attention that the appliance purchased recently is defective and stopped functioning within two days.
+
+This is a clear breach of consumer rights. I request a replacement or full refund at the earliest.
+
+Sincerely,
+Priya Mehta"
+Amit Patel,Mr. Verma,Tenant,Unlawful eviction notice,Eviction notice served without prior legal warning,"Subject: Objection to Unlawful Eviction Notice
+
+Dear Sir,
+
+I am writing to formally object to the eviction notice issued without proper legal notice or justification.
+
+Such action is not in compliance with tenant protection laws. I request withdrawal of the notice.
+
+Sincerely,
+Amit Patel"
+Neha Joshi,Green Builders,Property,Construction delay,Project possession delayed beyond agreed timeline,"Subject: Complaint Regarding Delay in Property Possession
+
+Dear Sir/Madam,
+
+I wish to notify you about the delay in handing over possession of the property beyond the agreed timeline.
+
+This delay has caused financial and personal inconvenience. I request immediate clarification and compensation.
+
+Sincerely,
+Neha Joshi"
+Rohit Singh,TechZone,Cyber,Unauthorized account access,Personal account hacked and misused,"Subject: Report of Unauthorized Account Access
+
+Dear Sir/Madam,
+
+I am writing to report unauthorized access to my account, resulting in misuse of personal data.
+
+This is a serious cybersecurity concern. Kindly investigate and secure my account immediately.
+
+Sincerely,
+Rohit Singh"
+Kavya Shah,University Admin,Education,Incorrect exam result,Marks displayed do not match actual performance,"Subject: Request for Re-evaluation of Exam Results
+
+Dear Sir/Madam,
+
+I wish to bring to your attention a discrepancy in my exam results which do not reflect my actual performance.
+
+I request a re-evaluation of my answer sheet.
+
+Sincerely,
+Kavya Shah"
+Arjun Desai,Legal Corp,Contract,Breach of agreement,Terms of service agreement not honored,"Subject: Notice for Breach of Contract
+
+Dear Sir/Madam,
+
+I am writing to inform you that the agreed terms of our contract have not been fulfilled.
+
+This constitutes a breach of agreement. I request immediate corrective action.
+
+Sincerely,
+Arjun Desai"
+Sneha Kapoor,Family Court,Family Law,Child custody dispute,Disagreement regarding custody arrangements,"Subject: Request for Intervention in Custody Matter
+
+Dear Sir/Madam,
+
+I am writing to seek legal intervention regarding the ongoing child custody dispute.
+
+I request fair consideration in the best interest of the child.
+
+Sincerely,
+Sneha Kapoor"
+Vikas Yadav,Police Department,Criminal,Fraud complaint,Money transferred under false pretenses,"Subject: Complaint Regarding Financial Fraud
+
+Dear Sir/Madam,
+
+I wish to report a case of fraud where I was misled into transferring money.
+
+I request immediate investigation and necessary legal action.
+
+Sincerely,
+Vikas Yadav"
+sender_name,recipient_name,category,description,case_details,email_text
+Ankit Verma,ABC Pvt Ltd,Labour,Unpaid overtime wages,Employee worked extra hours without compensation,"Subject: Notice for Unpaid Overtime Wages
+
+Dear Sir/Madam,
+
+I am writing to formally address the issue of unpaid overtime wages for additional hours worked over the past months.
+
+This is in violation of labor regulations. I request payment for the overtime hours at the earliest.
+
+Sincerely,
+Ankit Verma"
+Riya Shah,OnlineKart,Consumer,Wrong product delivered,Delivered item does not match order placed,"Subject: Complaint Regarding Incorrect Product Delivery
+
+Dear Sir/Madam,
+
+I wish to bring to your attention that the product delivered does not match the item I had ordered.
+
+This reflects a lapse in service. I request an immediate replacement.
+
+Sincerely,
+Riya Shah"
+Manoj Patel,Mr. Shah,Tenant,Security deposit not returned,Landlord refusing to refund deposit after vacating,"Subject: Request for Refund of Security Deposit
+
+Dear Sir,
+
+I am writing regarding the non-refund of my security deposit after vacating the premises.
+
+Kindly process the refund without further delay.
+
+Sincerely,
+Manoj Patel"
+Pooja Mehta,Sunrise Developers,Property,Illegal construction activity,Unauthorized modifications in residential building,"Subject: Complaint Regarding Unauthorized Construction
+
+Dear Sir/Madam,
+
+I wish to report unauthorized construction activities within the residential premises.
+
+This violates property regulations. Kindly take necessary action.
+
+Sincerely,
+Pooja Mehta"
+Kunal Joshi,NetSecure,Cyber,Online payment fraud,Unauthorized transaction from bank account,"Subject: Report of Unauthorized Transaction
+
+Dear Sir/Madam,
+
+I am writing to report an unauthorized transaction from my bank account.
+
+Please investigate and reverse the transaction urgently.
+
+Sincerely,
+Kunal Joshi"
+Isha Desai,College Board,Education,Admission cancellation issue,Admission revoked without valid reason,"Subject: Appeal Against Admission Cancellation
+
+Dear Sir/Madam,
+
+I am writing to appeal against the cancellation of my admission without clear justification.
+
+I request reconsideration of my case.
+
+Sincerely,
+Isha Desai"
+Raj Malhotra,BuildCorp,Contract,Payment dispute,Client failed to release agreed payment,"Subject: Notice Regarding Pending Payment
+
+Dear Sir/Madam,
+
+I wish to notify you regarding the pending payment that remains unpaid despite completion of services.
+
+Kindly settle the dues promptly.
+
+Sincerely,
+Raj Malhotra"
+Meera Nair,Family Court,Family Law,Alimony dispute,Disagreement over maintenance amount,"Subject: Request for Review of Alimony Terms
+
+Dear Sir/Madam,
+
+I am writing to request a review of the alimony terms due to financial constraints.
+
+I seek a fair reassessment.
+
+Sincerely,
+Meera Nair"
+Suresh Kumar,Police Station,Criminal,Theft complaint,Personal belongings stolen from residence,"Subject: Complaint Regarding Theft Incident
+
+Dear Sir/Madam,
+
+I wish to report a theft incident at my residence involving valuable belongings.
+
+Kindly initiate investigation.
+
+Sincerely,
+Suresh Kumar"
+Deepak Singh,ABC Pvt Ltd,Labour,Wrongful termination,Employee terminated without valid reason,"Subject: Notice Against Wrongful Termination
+
+Dear Sir/Madam,
+
+I am writing to address my termination which was carried out without proper justification.
+
+I request clarification and reinstatement.
+
+Sincerely,
+Deepak Singh"
+Anjali Gupta,ShopEasy,Consumer,Refund not processed,Return accepted but refund not issued,"Subject: Request for Pending Refund
+
+Dear Sir/Madam,
+
+I am writing regarding a refund that has not been processed despite returning the product.
+
+Kindly resolve this at the earliest.
+
+Sincerely,
+Anjali Gupta"
+Ramesh Patel,Mr. Iyer,Tenant,Rent overcharge,Landlord charging rent beyond agreement,"Subject: Complaint Regarding Excess Rent Charges
+
+Dear Sir,
+
+I wish to report excessive rent charges beyond the agreed amount.
+
+Please rectify this issue immediately.
+
+Sincerely,
+Ramesh Patel"
+Nikita Shah,Urban Estates,Property,Encroachment issue,Neighbor occupying part of property illegally,"Subject: Complaint Regarding Property Encroachment
+
+Dear Sir/Madam,
+
+I am writing to report encroachment on my property by a neighboring party.
+
+Kindly take appropriate action.
+
+Sincerely,
+Nikita Shah"
+Harsh Mehta,Cyber Cell,Cyber,Identity theft,Personal identity misused online,"Subject: Complaint Regarding Identity Theft
+
+Dear Sir/Madam,
+
+I wish to report misuse of my identity in online platforms.
+
+Kindly investigate and take action.
+
+Sincerely,
+Harsh Mehta"
+Simran Kaur,University Office,Education,Certificate delay,Degree certificate not issued on time,"Subject: Request for Issuance of Certificate
+
+Dear Sir/Madam,
+
+I am writing regarding the delay in issuance of my degree certificate.
+
+Kindly expedite the process.
+
+Sincerely,
+Simran Kaur"
+Vivek Jain,TechBuild,Contract,Service delay,Project milestones not met on time,"Subject: Notice for Delay in Services
+
+Dear Sir/Madam,
+
+I wish to address delays in service delivery that have affected project timelines.
+
+Please ensure completion as agreed.
+
+Sincerely,
+Vivek Jain"
+Kiran Rao,Family Court,Family Law,Divorce settlement dispute,Disagreement on settlement terms,"Subject: Request for Review of Settlement Terms
+
+Dear Sir/Madam,
+
+I seek a review of the divorce settlement terms due to discrepancies.
+
+Kindly consider my request.
+
+Sincerely,
+Kiran Rao"
+Aakash Singh,Police Station,Criminal,Assault complaint,Physical altercation resulting in injury,"Subject: Complaint Regarding Assault
+
+Dear Sir/Madam,
+
+I wish to report an incident of physical assault resulting in injuries.
+
+Kindly initiate legal action.
+
+Sincerely,
+Aakash Singh"
+sender_name,recipient_name,category,description,case_details,email_text
+Nikhil Shah,ABC Pvt Ltd,Labour,Salary deduction without notice,Employer deducted salary without prior consent,"Subject: Notice Regarding Unauthorized Salary Deduction
+
+Dear Sir/Madam,
+
+I am writing to bring to your attention an unauthorized deduction made from my salary without prior notice.
+
+This action is not in accordance with employment policies. Kindly provide clarification and refund the deducted amount.
+
+Sincerely,
+Nikhil Shah"
+Pallavi Desai,QuickShop,Consumer,Expired product delivered,Received product past its expiry date,"Subject: Complaint Regarding Expired Product
+
+Dear Sir/Madam,
+
+I wish to report that the product delivered to me was expired at the time of receipt.
+
+This is unacceptable under consumer standards. Kindly arrange a replacement or refund.
+
+Sincerely,
+Pallavi Desai"
+Rahul Mehta,Mr. Khan,Tenant,Maintenance neglect,Landlord not addressing repair issues,"Subject: Complaint Regarding Lack of Maintenance
+
+Dear Sir,
+
+I am writing regarding unresolved maintenance issues in the rented premises.
+
+Kindly address the repairs promptly to ensure habitable conditions.
+
+Sincerely,
+Rahul Mehta"
+Neeraj Patel,Prime Realty,Property,Property document delay,Builder delaying legal documentation,"Subject: Request for Property Documentation
+
+Dear Sir/Madam,
+
+I wish to bring to your attention the delay in providing property-related legal documents.
+
+Kindly expedite the process.
+
+Sincerely,
+Neeraj Patel"
+Sonal Kapoor,Cyber Cell,Cyber,Phishing scam,Received fraudulent email requesting bank details,"Subject: Report of Phishing Attempt
+
+Dear Sir/Madam,
+
+I wish to report a phishing attempt involving fraudulent emails seeking sensitive information.
+
+Kindly investigate and take necessary action.
+
+Sincerely,
+Sonal Kapoor"
+Divya Sharma,Board Office,Education,Incorrect attendance record,Attendance marked absent despite presence,"Subject: Correction Request for Attendance Record
+
+Dear Sir/Madam,
+
+I am writing regarding an error in my attendance record which incorrectly marks me absent.
+
+Kindly correct the record.
+
+Sincerely,
+Divya Sharma"
+Kartik Jain,BuildWell,Contract,Incomplete work,Contractor failed to complete agreed work,"Subject: Notice Regarding Incomplete Contract Work
+
+Dear Sir/Madam,
+
+I wish to notify you that the work agreed upon in our contract remains incomplete.
+
+Kindly ensure completion at the earliest.
+
+Sincerely,
+Kartik Jain"
+Ritu Singh,Family Court,Family Law,Guardianship dispute,Conflict over child guardianship rights,"Subject: Request for Guardianship Review
+
+Dear Sir/Madam,
+
+I am writing to seek a review of the guardianship arrangement concerning the child.
+
+Kindly consider my application.
+
+Sincerely,
+Ritu Singh"
+Sunil Yadav,Police Dept,Criminal,Online scam victim,Lost money through fraudulent scheme,"Subject: Complaint Regarding Online Scam
+
+Dear Sir/Madam,
+
+I wish to report a financial loss due to an online scam.
+
+Kindly investigate the matter.
+
+Sincerely,
+Sunil Yadav"
+Ayesha Khan,ABC Pvt Ltd,Labour,PF not credited,Employer failed to deposit PF contributions,"Subject: Notice Regarding PF Non-credit
+
+Dear Sir/Madam,
+
+I am writing regarding the non-credit of my provident fund contributions.
+
+Kindly resolve this issue immediately.
+
+Sincerely,
+Ayesha Khan"
+Rohan Verma,DealMart,Consumer,Order not delivered,Product not received despite payment,"Subject: Complaint Regarding Non-delivery of Order
+
+Dear Sir/Madam,
+
+I wish to report that my order has not been delivered despite successful payment.
+
+Kindly arrange delivery or refund.
+
+Sincerely,
+Rohan Verma"
+Bhavesh Patel,Mr. Shah,Tenant,Water supply issue,No consistent water supply in rental property,"Subject: Complaint Regarding Water Supply Issue
+
+Dear Sir,
+
+I am writing regarding irregular water supply in the rented premises.
+
+Kindly resolve the issue urgently.
+
+Sincerely,
+Bhavesh Patel"
+Tanvi Mehta,City Developers,Property,Boundary dispute,Disagreement over property boundaries,"Subject: Complaint Regarding Property Boundary Dispute
+
+Dear Sir/Madam,
+
+I wish to report a dispute regarding unclear property boundaries.
+
+Kindly assist in resolving this matter.
+
+Sincerely,
+Tanvi Mehta"
+Arvind Kumar,Cyber Cell,Cyber,Social media hacking,Account taken over by unknown party,"Subject: Report of Social Media Account Hacking
+
+Dear Sir/Madam,
+
+I am writing to report unauthorized access to my social media account.
+
+Kindly secure the account and investigate.
+
+Sincerely,
+Arvind Kumar"
+Pooja Nair,University Office,Education,Fee overcharge,Charged excess fees beyond notified amount,"Subject: Complaint Regarding Excess Fee Charge
+
+Dear Sir/Madam,
+
+I wish to report being charged fees beyond the official structure.
+
+Kindly review and refund the excess amount.
+
+Sincerely,
+Pooja Nair"
+Sameer Gupta,InfraBuild,Contract,Contract breach,Service terms not fulfilled as agreed,"Subject: Notice for Breach of Contract
+
+Dear Sir/Madam,
+
+I am writing to notify you of a breach in the agreed service terms.
+
+Kindly take corrective measures.
+
+Sincerely,
+Sameer Gupta"
+Anita Sharma,Family Court,Family Law,Domestic dispute,Conflict requiring legal mediation,"Subject: Request for Legal Mediation
+
+Dear Sir/Madam,
+
+I seek legal mediation for a domestic dispute affecting family harmony.
+
+Kindly consider my request.
+
+Sincerely,
+Anita Sharma"
+Gaurav Singh,Police Station,Criminal,Vehicle theft,Car stolen from parking area,"Subject: Complaint Regarding Vehicle Theft
+
+Dear Sir/Madam,
+
+I wish to report theft of my vehicle from a parking area.
+
+Kindly initiate investigation.
+
+Sincerely,
+Gaurav Singh"
+sender_name,recipient_name,category,description,case_details,email_text
+Harsh Patel,ABC Pvt Ltd,Labour,Salary not credited on time,Monthly salary consistently delayed beyond due date,"Subject: Notice Regarding Repeated Salary Delay
+
+Dear Sir/Madam,
+
+I am writing to formally address the repeated delay in crediting my monthly salary.
+
+This ongoing issue is causing financial inconvenience. Kindly ensure timely payment going forward.
+
+Sincerely,
+Harsh Patel"
+Neha Shah,BuySmart,Consumer,Missing item in package,Order delivered with missing components,"Subject: Complaint Regarding Missing Item
+
+Dear Sir/Madam,
+
+I wish to inform you that my recent order was delivered with missing items.
+
+Kindly arrange for delivery of the missing components.
+
+Sincerely,
+Neha Shah"
+Vivek Patel,Mr. Reddy,Tenant,Electricity issue,Frequent power outages in rented house,"Subject: Complaint Regarding Electricity Issues
+
+Dear Sir,
+
+I am writing regarding frequent electricity outages affecting daily living.
+
+Kindly address this issue urgently.
+
+Sincerely,
+Vivek Patel"
+Komal Desai,Metro Builders,Property,Delay in registry,Property registration process not completed,"Subject: Request for Completion of Property Registration
+
+Dear Sir/Madam,
+
+I wish to bring to your attention the delay in completing the property registration.
+
+Kindly expedite the process.
+
+Sincerely,
+Komal Desai"
+Rakesh Verma,Cyber Cell,Cyber,UPI fraud,Unauthorized UPI transaction detected,"Subject: Complaint Regarding UPI Fraud
+
+Dear Sir/Madam,
+
+I am writing to report an unauthorized UPI transaction from my account.
+
+Kindly investigate and reverse the transaction.
+
+Sincerely,
+Rakesh Verma"
+Ishita Mehta,University Office,Education,Scholarship delay,Scholarship amount not disbursed,"Subject: Request for Scholarship Disbursement
+
+Dear Sir/Madam,
+
+I wish to inquire about the delay in disbursing my scholarship funds.
+
+Kindly process the payment at the earliest.
+
+Sincerely,
+Ishita Mehta"
+Karan Malhotra,TechInfra,Contract,Delayed project delivery,Project not completed within agreed deadline,"Subject: Notice Regarding Project Delay
+
+Dear Sir/Madam,
+
+I am writing regarding the delay in project completion beyond the agreed timeline.
+
+Kindly provide an update and expedite delivery.
+
+Sincerely,
+Karan Malhotra"
+Nisha Kapoor,Family Court,Family Law,Maintenance dispute,Disagreement over financial support terms,"Subject: Request for Review of Maintenance Terms
+
+Dear Sir/Madam,
+
+I seek a review of the maintenance arrangement due to financial concerns.
+
+Kindly consider my request.
+
+Sincerely,
+Nisha Kapoor"
+Rohit Yadav,Police Station,Criminal,Burglary complaint,House broken into and valuables stolen,"Subject: Complaint Regarding Burglary
+
+Dear Sir/Madam,
+
+I wish to report a burglary incident at my residence resulting in loss of valuables.
+
+Kindly investigate the matter.
+
+Sincerely,
+Rohit Yadav"
+Alok Sharma,ABC Pvt Ltd,Labour,Workplace harassment,Employee facing mental harassment at work,"Subject: Complaint Regarding Workplace Harassment
+
+Dear Sir/Madam,
+
+I am writing to report instances of workplace harassment affecting my well-being.
+
+Kindly take appropriate action to address this issue.
+
+Sincerely,
+Alok Sharma"
+Shruti Jain,ShopKart,Consumer,Warranty not honored,Company refusing warranty claim,"Subject: Complaint Regarding Warranty Claim Rejection
+
+Dear Sir/Madam,
+
+I wish to report that my valid warranty claim has been unjustly rejected.
+
+Kindly honor the warranty terms.
+
+Sincerely,
+Shruti Jain"
+Nitin Desai,Mr. Mehta,Tenant,Parking dispute,Unauthorized use of allocated parking space,"Subject: Complaint Regarding Parking Dispute
+
+Dear Sir,
+
+I am writing regarding misuse of my designated parking space.
+
+Kindly resolve this issue promptly.
+
+Sincerely,
+Nitin Desai"
+Sejal Shah,Urban Homes,Property,Title issue,Discrepancy in property ownership documents,"Subject: Complaint Regarding Property Title Discrepancy
+
+Dear Sir/Madam,
+
+I wish to report inconsistencies in property ownership documentation.
+
+Kindly clarify and resolve the matter.
+
+Sincerely,
+Sejal Shah"
+Aman Gupta,Cyber Cell,Cyber,Email hacking,Unauthorized access to email account,"Subject: Report of Email Account Compromise
+
+Dear Sir/Madam,
+
+I am writing to report unauthorized access to my email account.
+
+Kindly assist in securing the account.
+
+Sincerely,
+Aman Gupta"
+Riya Kapoor,School Office,Education,Transfer certificate delay,School delaying issuance of TC,"Subject: Request for Transfer Certificate
+
+Dear Sir/Madam,
+
+I wish to request issuance of my transfer certificate which has been delayed.
+
+Kindly process this urgently.
+
+Sincerely,
+Riya Kapoor"
+Aditya Singh,BuildCorp,Contract,Quality issues,Delivered work does not meet agreed standards,"Subject: Notice Regarding Substandard Work
+
+Dear Sir/Madam,
+
+I am writing to highlight that the completed work does not meet agreed quality standards.
+
+Kindly rectify the issues.
+
+Sincerely,
+Aditya Singh"
+Poonam Yadav,Family Court,Family Law,Property division dispute,Disagreement over division of assets,"Subject: Request for Property Division Review
+
+Dear Sir/Madam,
+
+I seek a review of the property division arrangement due to disputes.
+
+Kindly consider my case.
+
+Sincerely,
+Poonam Yadav"
+Kunal Singh,Police Dept,Criminal,Cheating complaint,Deceived in financial transaction,"Subject: Complaint Regarding Cheating Case
+
+Dear Sir/Madam,
+
+I wish to report being deceived in a financial transaction.
+
+Kindly investigate and take action.
+
+Sincerely,
+Kunal Singh"
