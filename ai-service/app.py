@@ -1,6 +1,37 @@
-from pydantic import BaseModel
-from fastapi.responses import PlainTextResponse
+from fastapi import FastAPI, Query
+from fastapi.responses import PlainTextResponse, JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field, ValidationError
 import datetime
+import joblib
+import os
+from pathlib import Path
+import httpx
+from dotenv import load_dotenv
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s',
+    handlers=[logging.StreamHandler()]
+)
+logger = logging.getLogger("lawbridge-ai-service")
+
+# Load ai-service/.env first, then repo backend/.env (Groq key often lives with Node env).
+_root = Path(__file__).resolve().parent
+load_dotenv(_root / ".env")
+load_dotenv(_root.parent / "backend" / ".env")
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # --- Email Generation Endpoint ---
 class EmailRequest(BaseModel):
     sender_name: str
@@ -37,7 +68,6 @@ Sincerely,
     except Exception as e:
         logger.error(f"/generate-email error: {e}")
         return PlainTextResponse(f"Error: {str(e)}", status_code=500)
-from fastapi import Query
 # --- Lawyer Recommendation Endpoint ---
 from fastapi.responses import JSONResponse
 
