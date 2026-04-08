@@ -94,11 +94,11 @@ export default function Chat() {
       // Backend proxies to ai-service /predict (see backend/routes/ai.js)
       const res = await API.post(
         "/api/ai/query",
-        { question },
+        { question: question },
         { signal: controller.signal }
       );
 
-      const { category, severity, full_response, lawyers, error } = res.data;
+      const { category, severity, action, solution, legal_info, lawyers, error } = res.data;
 
       if (error) {
         setMessages((prev) => [...prev, { type: "ai", text: `Error: ${error}` }]);
@@ -110,7 +110,15 @@ export default function Chat() {
 
       setMessages((prev) => [
         ...prev,
-        { type: "ai", full_response, category, severity, lawyers },
+        {
+          type: "ai",
+          solution,
+          legal_info,
+          action,
+          category,
+          severity,
+          lawyers,
+        },
       ]);
 
       // If lawyers are present, show the prompt after Groq response
@@ -231,10 +239,21 @@ export default function Chat() {
 
                 <div className="chat-message__bubble">
                   {/* AI message with rich Groq response */}
-                  {msg.type === "ai" && msg.full_response ? (
+                  {msg.type === "ai" && (msg.solution || msg.legal_info) ? (
                     <>
-                      <RichResponse text={msg.full_response} />
-                      {(msg.category || msg.severity) && (
+                      {msg.solution && (
+                        <div className="chat-section">
+                          <h4 className="chat-section__title">AI Solution</h4>
+                          <RichResponse text={msg.solution} />
+                        </div>
+                      )}
+                      {msg.legal_info && (
+                        <div className="chat-section">
+                          <h4 className="chat-section__title">Legal Info</h4>
+                          <RichResponse text={msg.legal_info} />
+                        </div>
+                      )}
+                      {(msg.category || msg.severity || msg.action) && (
                         <div className="chat-message__meta-row">
                           {msg.category && (
                             <span className="chat-chip">{msg.category}</span>
@@ -243,6 +262,9 @@ export default function Chat() {
                             <span className={`chat-chip chat-chip--${msg.severity.toLowerCase()}`}>
                               {msg.severity}
                             </span>
+                          )}
+                          {msg.action && (
+                            <span className="chat-chip chat-chip--action">{msg.action}</span>
                           )}
                         </div>
                       )}

@@ -330,9 +330,9 @@ async def predict(data: InputText):
         return {
             "category": category,
             "severity": severity,
-            "action": action,              # 🔥 NEW
-            "solution": solution,          # 🔥 YOUR LOGIC
-            "legal_info": legal_info,      # 🔥 GROQ
+            "action": action,             
+            "solution": solution,       
+            "legal_info": legal_info,      
             "lawyers": lawyer_recommendations
         }
 
